@@ -1,15 +1,23 @@
 
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { addTodoAction } from '../redux/actions';
+import { addTodo, deleteTodo } from "../redux/todosReducer";
 
 const AddTodoForm = () => {
     const [inputValue, setInputValue ] = useState('');
     const [result, setResult] = useState('');
+    const dispatch = useDispatch();
 
-    const addTodoForm = () => {
+    const handleClick = () => {
         setResult(inputValue);
-        useDispatch(addTodoAction(inputValue))
+        dispatch(
+            addTodo(
+                {
+                    text: inputValue,
+                    completed: false,
+                }
+            )
+        )
     }
 
     const handleChange = (event) => {
@@ -20,7 +28,7 @@ const AddTodoForm = () => {
     return (
         <div>
             <input onChange={handleChange} type="text" />
-            <button onClick={addTodoForm}>追加</button>
+            <button onClick={handleClick}>追加</button>
 
             <p>input: {inputValue}</p>
             <p>Result: {result}</p>
