@@ -32,6 +32,7 @@ const TodoItem = () => {
                                 <button onClick={()=>handleComplete(todo.id)}>完了</button>
                                 <button onClick={()=>handleDelete(todo.id)}>削除</button>
                             </div>
+                            <span>期日:{todo.dueDate}</span>
                         </li>
                     )
                 })
