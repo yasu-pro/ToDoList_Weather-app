@@ -2,6 +2,7 @@ import styles from './TodoItem.module.scss';
 import { useSelector } from 'react-redux';
 
 const TodoItem = () => {
+    
     const todos = useSelector((state) => state.todos);
 
     return (
@@ -9,7 +10,7 @@ const TodoItem = () => {
             {
                 todos.map((todo) => {
                     return(
-                        <li key={todo.text} className={styles.li}>
+                        <li key={todo.id} className={styles.li}>
                             <span>✅</span>
                             <p>{todo.text}</p>
                             <div>

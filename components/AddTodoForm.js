@@ -8,6 +8,10 @@ const AddTodoForm = () => {
     const [result, setResult] = useState('');
     const dispatch = useDispatch();
 
+    const createId = () => {
+        return Math.random().toString(36).substring(2, 9)
+    }
+
     const handleClick = () => {
         setResult(inputValue);
         dispatch(
@@ -15,6 +19,7 @@ const AddTodoForm = () => {
                 {
                     text: inputValue,
                     completed: false,
+                    id: createId(),
                 }
             )
         )
