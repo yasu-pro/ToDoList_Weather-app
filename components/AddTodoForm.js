@@ -2,11 +2,12 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { addTodo, deleteTodo } from "../redux/todosReducer";
+import ReactDatePicker from "./DatePicker";
 
 const AddTodoForm = () => {
     const [inputValue, setInputValue ] = useState('');
     const [result, setResult] = useState('');
-    const [dueDate, setDueDate] = useState('');
+    const [dueDate, setDueDate] = useState(new Date());
     const dispatch = useDispatch();
 
     const createId = () => {
@@ -32,20 +33,18 @@ const AddTodoForm = () => {
         setInputValue(event.target.value);
     }
 
-    const handleDueDayChange = (e) => {
-        setDueDate(e.target.value);
-        console.log(setDueDate);
+    const handleDatePickerChange = (date) => {
+        setDueDate(date);
     }
 
     return (
         <div>
             <input type="text" onChange={handleChange} />
-            <input type="date" onChange={(e) => handleDueDayChange(e)} />
+            <ReactDatePicker onDateChange={handleDatePickerChange} />
             <button onClick={handleClick}>追加</button>
 
-            <p>input dueDay: {}</p>
             <p>input: {inputValue}</p>
-            <p>Result: input:{result}/dueDate:{dueDate}</p>
+            <p>Result: input:{result}</p>
         </div>
     )
 }
