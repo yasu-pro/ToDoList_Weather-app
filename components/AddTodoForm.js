@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { addTodo, deleteTodo } from "../redux/todosReducer";
 import ReactDatePicker from "./DatePicker";
+import {format} from "date-fns"
 
 const AddTodoForm = () => {
     const [inputValue, setInputValue ] = useState('');
@@ -23,7 +24,7 @@ const AddTodoForm = () => {
                     text: inputValue,
                     completed: false,
                     id: createId(),
-                    dueDate:dueDate,
+                    dueDate:dueDate ? format(dueDate, "yyyy年MM月dd日") : "なし",
                 }
             )
         )
@@ -40,7 +41,7 @@ const AddTodoForm = () => {
     return (
         <div>
             <input type="text" onChange={handleChange} />
-            <ReactDatePicker onDateChange={handleDatePickerChange} />
+            <ReactDatePicker initialDate={dueDate} onDateChange={handleDatePickerChange} />
             <button onClick={handleClick}>追加</button>
 
             <p>input: {inputValue}</p>
