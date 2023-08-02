@@ -24,7 +24,7 @@ const AddTodoForm = () => {
                     text: inputValue,
                     completed: false,
                     id: createId(),
-                    dueDate:dueDate ? format(dueDate, "yyyy年MM月dd日") : "なし",
+                    dueDate:format(dueDate, "yyyy年MM月dd日"),
                 }
             )
         )
@@ -41,7 +41,7 @@ const AddTodoForm = () => {
     return (
         <div>
             <input type="text" onChange={handleChange} />
-            <ReactDatePicker initialDate={dueDate} onDateChange={handleDatePickerChange} />
+            <ReactDatePicker onDateChange={handleDatePickerChange} />
             <button onClick={handleClick}>追加</button>
 
             <p>input: {inputValue}</p>
