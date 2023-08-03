@@ -16,7 +16,7 @@ const todosReducer = createSlice({
 
     completeTodo: (state, action) => {
       return state.map((todo) => {
-        if (todo.id === action.payload) {
+        if (todo.id === action.payload.id) {
           return { ...todo, completed: true };
         }
         else
@@ -24,8 +24,20 @@ const todosReducer = createSlice({
         }
       )
     },
+
+    changeDueDate: (state, action) => {
+      const { id, dueDate } = action.payload;
+
+      return state.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, dueDate: dueDate };
+        } else {
+          return todo;
+        }
+      });
+    },
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo } = todosReducer.actions;
+export const { addTodo, deleteTodo, completeTodo, changeDueDate } = todosReducer.actions;
 export default todosReducer.reducer;

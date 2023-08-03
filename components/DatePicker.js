@@ -2,7 +2,7 @@ import React, { useState, forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const ReactDatePicker = ({ onDateChange }) => {
+const ReactDatePicker = ({ isChangeDueDate, onDateChange }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const handleDateChange = (date) => {
@@ -10,18 +10,28 @@ const ReactDatePicker = ({ onDateChange }) => {
     onDateChange(date);
   };
 
-  const CustomInput = forwardRef(({ value, onClick }, ref) => (
-    <button className="custom-input" onClick={onClick} ref={ref}>
-      {value}
-    </button>
-  ));
-  return (
-    <DatePicker
-      selected={startDate}
-      onChange={handleDateChange}
-      customInput={<CustomInput />}
-    />
-  );
+  if (isChangeDueDate === true) {
+    const ChangeDueDateButton = forwardRef(({ value, onClick }, ref) => (
+      <button className="ChangeDueDateButton" onClick={onClick} ref={ref}>
+        期日変更
+      </button>
+    ));
+    return (
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => handleDateChange(date)}
+        customInput={<ChangeDueDateButton />}
+      />
+    );
+  } else {
+    return (
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => handleDateChange(date)}
+        inline
+      />
+    );
+  }
 };
 
 export default ReactDatePicker;
