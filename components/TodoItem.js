@@ -1,10 +1,7 @@
 import styles from './TodoItem.module.scss';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { format } from "date-fns"
-import { deleteTodo } from "../redux/todosReducer";
-import { completeTodo } from "../redux/todosReducer";
-import { changeDueDate } from "../redux/todosReducer";
+import { deleteTodo, completeTodo, changeDueDate} from "../redux/todosReducer";
 import ReactDatePicker from "./DatePicker";
 
 const TodoItem = () => {

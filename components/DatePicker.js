@@ -11,7 +11,7 @@ const ReactDatePicker = ({ isChangeDueDate, onDateChange }) => {
   };
 
   if (isChangeDueDate === true) {
-    const ChangeDueDateButton = forwardRef(({ value, onClick }, ref) => (
+    const ChangeDueDateButton = forwardRef(({ onClick }, ref) => (
       <button className="ChangeDueDateButton" onClick={onClick} ref={ref}>
         期日変更
       </button>
