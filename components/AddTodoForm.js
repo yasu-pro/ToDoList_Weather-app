@@ -15,16 +15,19 @@ const AddTodoForm = () => {
     }
 
     const handleClick = () => {
+        const id = createId();
         dispatch(
             addTodo(
                 {
+                    id:id,
                     text: inputValue,
                     completed: false,
-                    id: createId(),
                     dueDate:format(dueDate, "yyyy年MM月dd日"),
                 }
             )
         )
+        setInputValue("");
+        setDueDate(new Date());
     }
 
     const handleChange = (event) => {
