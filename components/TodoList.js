@@ -1,8 +1,16 @@
 
 import styles  from "./TodoList.module.scss";
-const TodoList = ({children}) => {
+import TodoItem from "./TodoItem";
+
+const TodoList = ({ todos }) => {
     return (
-        <ul className={styles.list}>{children}</ul>
+        <ul className={styles.list}>
+            {todos.length > 0 ? (
+                todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+            ) : (
+                <p>Todoを追加してください。</p>
+            )}
+        </ul>
     )
 }
 
