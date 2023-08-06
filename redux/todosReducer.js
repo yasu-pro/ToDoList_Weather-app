@@ -1,40 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [];
+const initialState = { listData: {} };
 
 const todosReducer = createSlice({
   name: 'todos',
   initialState: initialState,
   reducers: {
     addTodo: (state, action) => {
-      state.push(action.payload);
+      const id = action.payload.id;
+      state.listData[id] = { ...action.payload, id};
     },
 
     deleteTodo: (state, action) => {
-      return state.filter((todo) => todo.id !== action.payload);
+      const id = action.payload;
+      delete state.listData[id];
     },
 
     completeTodo: (state, action) => {
-      return state.map((todo) => {
-        if (todo.id === action.payload) {
-          return { ...todo, completed: true };
-        }
-        else
-          return todo;
-        }
-      )
+      const id = action.payload;
+      state.listData[id].completed = true;
     },
 
     changeDueDate: (state, action) => {
       const { id, dueDate } = action.payload;
-
-      return state.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, dueDate: dueDate };
-        } else {
-          return todo;
-        }
-      });
+      state.listData[id].dueDate = dueDate;
     },
   },
 });
