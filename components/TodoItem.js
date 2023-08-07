@@ -5,6 +5,7 @@ import { deleteTodo, completeTodo, changeDueDate} from "../redux/todosReducer";
 import ReactDatePicker from "./DatePicker";
 
 const TodoItem = ({ todo }) => {
+    console.log(todo);
     const dispatch = useDispatch();
 
     const handleDelete = (id) => {
@@ -22,9 +23,26 @@ const TodoItem = ({ todo }) => {
 
     return (
         <li key={todo.id} className={styles.li}>
-            {todo.completed === true ? <span>✅</span> : '未完了'}
+            {todo.completed === true ? <span>✅</span> : "未完了"}
             <p>{todo.text}</p>
             <span>期日:{todo.dueDate}</span>
+            <span>
+                重要度:
+                {
+                    (()=>{
+                        switch (todo.priority) {
+                            case "low":
+                                return "低";
+                            case "medium":
+                                return "中";
+                            case "high":
+                                return "高";
+                            default:
+                                return "";
+                        }
+                    })()
+                }
+            </span>
             <div>
                 <button onClick={() => handleComplete(todo.id)}>完了</button>
                 <button onClick={() => handleDelete(todo.id)}>削除</button>
