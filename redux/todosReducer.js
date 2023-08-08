@@ -25,8 +25,18 @@ const todosReducer = createSlice({
       const { id, dueDate } = action.payload;
       state.listData[id].dueDate = dueDate;
     },
+
+    editTodoAction: (state, action) => {
+      const id = action.payload.id;
+      state.listData[id] = { ...action.payload};
+    },
+
+    showEditForm: (state, action) => {
+      const {id, isEditFormVisible} = action.payload;
+      state.listData[id].isEditFormVisible = isEditFormVisible;
+    }
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo, changeDueDate } = todosReducer.actions;
+export const { addTodo, deleteTodo, completeTodo, changeDueDate, editTodoAction, showEditForm } = todosReducer.actions;
 export default todosReducer.reducer;

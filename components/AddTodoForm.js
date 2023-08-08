@@ -21,6 +21,7 @@ const AddTodoForm = () => {
             addTodo(
                 {
                     id:id,
+                    isEditFormVisible: false,
                     text: inputValue,
                     completed: false,
                     dueDate:format(dueDate, "yyyy年MM月dd日"),

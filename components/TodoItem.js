@@ -1,11 +1,12 @@
+import React, { useState } from "react";
 import styles from './TodoItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { format } from "date-fns"
-import { deleteTodo, completeTodo, changeDueDate} from "../redux/todosReducer";
+import { deleteTodo, completeTodo, changeDueDate, showEditForm} from "../redux/todosReducer";
 import ReactDatePicker from "./DatePicker";
+import EditTodoForm from "./EditTodoForm"
 
 const TodoItem = ({ todo }) => {
-    console.log(todo);
     const dispatch = useDispatch();
 
     const handleDelete = (id) => {
@@ -20,6 +21,10 @@ const TodoItem = ({ todo }) => {
         const formattedDate = format(date, "yyyy年MM月dd日");
         dispatch(changeDueDate({ id, dueDate: formattedDate }));
     };
+
+    const handleIsEditFormVisible = (id, isShow) => {
+        dispatch(showEditForm( {id, isEditFormVisible: isShow }))
+    }
 
     return (
         <li key={todo.id} className={styles.li}>
@@ -48,6 +53,9 @@ const TodoItem = ({ todo }) => {
                 <button onClick={() => handleDelete(todo.id)}>削除</button>
             </div>
             <ReactDatePicker isChangeDueDate={true} onDateChange={(date) => handleDateChange(todo.id, date)}  />
+            <button onClick={() => handleIsEditFormVisible(todo.id,true)}>編集</button>
+
+            {todo.isEditFormVisible && <EditTodoForm todo={todo} />}
         </li>
     );
 }
