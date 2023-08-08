@@ -10,8 +10,9 @@ const EditTodoForm = ({todo}) => {
     const dispatch = useDispatch();
 
     const handleEditComplete = () => {
-        setEditedTodo({ ...editedTodo, isEditFormVisible: false })
-        dispatch(editTodoAction(editedTodo));
+        const updatedTodo = { ...editedTodo, isEditFormVisible: false };
+        setEditedTodo(updatedTodo);
+        dispatch(editTodoAction(updatedTodo));
     }
 
     const handleEditCancel = () => {
