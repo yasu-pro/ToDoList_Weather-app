@@ -1,8 +1,8 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const ReactDatePicker = ({ isChangeDueDate, onDateChange }) => {
+const ReactDatePicker = ({ onDateChange }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const handleDateChange = (date) => {
@@ -10,28 +10,12 @@ const ReactDatePicker = ({ isChangeDueDate, onDateChange }) => {
     onDateChange(date);
   };
 
-  if (isChangeDueDate === true) {
-    const ChangeDueDateButton = forwardRef(({ onClick }, ref) => (
-      <button className="ChangeDueDateButton" onClick={onClick} ref={ref}>
-        期日変更
-      </button>
-    ));
-    return (
-      <DatePicker
-        selected={startDate}
-        onChange={(date) => handleDateChange(date)}
-        customInput={<ChangeDueDateButton />}
-      />
-    );
-  } else {
-    return (
-      <DatePicker
-        selected={startDate}
-        onChange={(date) => handleDateChange(date)}
-        inline
-      />
-    );
-  }
+  return (
+    <DatePicker
+      selected={startDate}
+      onChange={(date) => handleDateChange(date)}
+    />
+  );
 };
 
 export default ReactDatePicker;

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from './TodoItem.module.scss';
 import { useDispatch } from 'react-redux';
-import { format } from "date-fns"
-import { deleteTodo, completeTodo, changeDueDate, showEditForm} from "../redux/todosReducer";
-import ReactDatePicker from "./DatePicker";
+import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
 import EditTodoForm from "./EditTodoForm"
 
 const TodoItem = ({ todo }) => {
@@ -19,11 +17,6 @@ const TodoItem = ({ todo }) => {
         dispatch(completeTodo({id, isComplete}))
     }
 
-    const handleDateChange = (id, date) => {
-        const formattedDate = format(date, "yyyy年MM月dd日");
-        dispatch(changeDueDate({ id, dueDate: formattedDate }));
-    };
-
     const handleIsEditFormVisible = (id, isShow) => {
         dispatch(showEditForm( {id, isEditFormVisible: isShow }))
     }
@@ -34,7 +27,7 @@ const TodoItem = ({ todo }) => {
             <p>{todo.text}</p>
             <span>期日:{todo.dueDate}</span>
             <span>
-                重要度:
+                優先度:
                 {
                     (()=>{
                         switch (todo.priority) {
@@ -51,12 +44,11 @@ const TodoItem = ({ todo }) => {
                 }
             </span>
             <div>
-                <label for="completeCheckbox">完了:
-                    <input type="checkbox" id="completeCheckbox" name="completeCheckbox" checked={todo.completed} onClick={() => handleComplete(todo.id)} />
-                </label>
-                <button onClick={() => handleDelete(todo.id)}>削除</button>
+                <span>完了:</span>
+                <input type="checkbox" checked={todo.completed} onClick={() => handleComplete(todo.id)} />
             </div>
-            <ReactDatePicker isChangeDueDate={true} onDateChange={(date) => handleDateChange(todo.id, date)}  />
+
+            <button onClick={() => handleDelete(todo.id)}>削除</button>
             <button onClick={() => handleIsEditFormVisible(todo.id,true)}>編集</button>
 
             {todo.isEditFormVisible && <EditTodoForm todo={todo} />}

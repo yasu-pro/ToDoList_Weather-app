@@ -48,16 +48,48 @@ const AddTodoForm = () => {
 
     return (
         <div>
-            <input type="text" onChange={handleChange} value={inputValue}/>
             <div>
-                優先度：
-                <select value={priority} onChange={handlePriorityChange}>
-                    <option value="low">低</option>
-                    <option value="medium">中</option>
-                    <option value="high">高</option>
-                </select>
+                <span>内容:</span>
+                <input type="text" onChange={handleChange} value={inputValue}/>
             </div>
-            <ReactDatePicker onDateChange={handleDatePickerChange} />
+            <div>
+                <span>優先度:</span>
+                <div>
+                    <input
+                        type="radio"
+                        id="low"
+                        name="priority"
+                        value="low"
+                        checked={priority === "low"}
+                        onChange={handlePriorityChange}
+                    />
+                    <label htmlFor="low">低</label>
+
+                    <input
+                        type="radio"
+                        id="medium"
+                        name="priority"
+                        value="medium"
+                        checked={priority === "medium"}
+                        onChange={handlePriorityChange}
+                    />
+                    <label htmlFor="medium">中</label>
+
+                    <input
+                        type="radio"
+                        id="high"
+                        name="priority"
+                        value="high"
+                        checked={priority === "high"}
+                        onChange={handlePriorityChange}
+                    />
+                    <label htmlFor="high">高</label>
+                </div>
+            </div>
+            <div>
+                <span>期日:</span>
+                <ReactDatePicker onDateChange={handleDatePickerChange} />
+            </div>
             <button onClick={handleClick}>追加</button>
         </div>
     )
