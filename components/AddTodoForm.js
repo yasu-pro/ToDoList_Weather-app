@@ -88,7 +88,7 @@ const AddTodoForm = () => {
             </div>
             <div>
                 <span>期日:</span>
-                <ReactDatePicker onDateChange={handleDatePickerChange} />
+                <ReactDatePicker selected={dueDate} onDateChange={handleDatePickerChange} />
             </div>
             <button onClick={handleClick}>追加</button>
         </div>

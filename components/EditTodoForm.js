@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import ReactDatePicker from "./DatePicker";
-import { format } from "date-fns"
+import { format, parse } from "date-fns"
 import { editTodoAction, showEditForm } from "../redux/todosReducer";
 import { useDispatch } from 'react-redux';
 
@@ -62,7 +62,10 @@ const EditTodoForm = ({todo}) => {
             </div>
             <p>
                 <span>期限:</span>
-                <ReactDatePicker id="editedDueDate" isChangeDueDate={true} onDateChange={(date) => setEditedTodo({...editedTodo, dueDate: format(date, "yyyy年MM月dd日")})}  />
+                <ReactDatePicker id="editedDueDate"
+                    selected={parse(editedTodo.dueDate, "yyyy年MM月dd日", new Date())}
+                    onDateChange={(date) => setEditedTodo({...editedTodo, dueDate: format(date, "yyyy年MM月dd日")})}
+                />
             </p>
 
             <div>
