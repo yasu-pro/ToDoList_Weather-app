@@ -1,7 +1,6 @@
 import React from "react";
 
 const TodoSummary = ( {todos} ) => {
-    console.log( todos );
     const totalTodo = todos.length > 0 ? todos.length : 0;
     const uncompleted = todos.length > 0 ? todos.filter(todo => todo.completed === false).length : 0;
     const completedTodo = todos.length > 0 ? todos.filter(todo => todo.completed === true).length : 0;
@@ -10,7 +9,6 @@ const TodoSummary = ( {todos} ) => {
             return 0;
         }
         const completionRate = Math.floor((completedTodo / totalTodo) * 100);
-        console.log(completionRate);
         return completionRate;
     }
 

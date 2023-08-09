@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/layout";
 import AddTodoForm from "../components/AddTodoForm"
 import TodoList from "../components/TodoList";
+import TodoSummary from "../components/TodoSummary";
 import { useSelector } from "react-redux";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
             <div>
                 <TodoList todos={listData} />
                 <AddTodoForm />
+                <TodoSummary todos={listData}/>
             </div>
         </Layout>
     )

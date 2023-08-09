@@ -12,7 +12,6 @@ const TodoItem = ({ todo }) => {
     }
 
     const handleComplete = (id) => {
-        console.log(todo.completed);
         const isComplete = todo.completed ? false : true;
         dispatch(completeTodo({id, isComplete}))
     }
@@ -45,7 +44,7 @@ const TodoItem = ({ todo }) => {
             </span>
             <div>
                 <span>完了:</span>
-                <input type="checkbox" checked={todo.completed} onClick={() => handleComplete(todo.id)} />
+                <input type="checkbox" checked={todo.completed} onChange={() => handleComplete(todo.id)} />
             </div>
 
             <button onClick={() => handleDelete(todo.id)}>削除</button>

@@ -47,7 +47,7 @@ const AddTodoForm = () => {
     }
 
     return (
-        <div>
+        <div style={{ border: "1px solid green" }}>
             <div>
                 <span>内容:</span>
                 <input type="text" onChange={handleChange} value={inputValue}/>
