@@ -17,8 +17,8 @@ const todosReducer = createSlice({
     },
 
     completeTodo: (state, action) => {
-      const id = action.payload;
-      state.listData[id].completed = true;
+      const {id, isComplete } = action.payload;
+      state.listData[id].completed = isComplete;
     },
 
     changeDueDate: (state, action) => {

@@ -14,7 +14,9 @@ const TodoItem = ({ todo }) => {
     }
 
     const handleComplete = (id) => {
-        dispatch(completeTodo(id))
+        console.log(todo.completed);
+        const isComplete = todo.completed ? false : true;
+        dispatch(completeTodo({id, isComplete}))
     }
 
     const handleDateChange = (id, date) => {
@@ -49,7 +51,9 @@ const TodoItem = ({ todo }) => {
                 }
             </span>
             <div>
-                <button onClick={() => handleComplete(todo.id)}>完了</button>
+                <label for="completeCheckbox">完了:
+                    <input type="checkbox" id="completeCheckbox" name="completeCheckbox" checked={todo.completed} onClick={() => handleComplete(todo.id)} />
+                </label>
                 <button onClick={() => handleDelete(todo.id)}>削除</button>
             </div>
             <ReactDatePicker isChangeDueDate={true} onDateChange={(date) => handleDateChange(todo.id, date)}  />
