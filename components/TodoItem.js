@@ -24,8 +24,8 @@ const TodoItem = ({ todo }) => {
     const calculateDaysUntilDueDate =() => {
         const dueDate = parse(todo.dueDate, "yyyy年MM月dd日", new Date())
         const currentDate = new Date();
-        const timeDifference = dueDate - currentDate;
-        const daysUntilDue = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        const timeDifference = dueDate - currentDate;// ミリ秒単位の差分
+        const daysUntilDue = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // 日数に変換して切り上げ
         return daysUntilDue;
     }
 
