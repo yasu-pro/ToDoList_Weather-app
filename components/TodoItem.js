@@ -3,7 +3,7 @@ import styles from './TodoItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
 import EditTodoForm from "./EditTodoForm"
-import { format, parse } from "date-fns"
+import { parse } from "date-fns"
 
 const TodoItem = ({ todo }) => {
     const dispatch = useDispatch();
