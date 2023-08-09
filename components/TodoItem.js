@@ -3,6 +3,7 @@ import styles from './TodoItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
 import EditTodoForm from "./EditTodoForm"
+import { format, parse } from "date-fns"
 
 const TodoItem = ({ todo }) => {
     const dispatch = useDispatch();
@@ -20,11 +21,22 @@ const TodoItem = ({ todo }) => {
         dispatch(showEditForm( {id, isEditFormVisible: isShow }))
     }
 
+    const calculateDaysUntilDueDate =() => {
+        const dueDate = parse(todo.dueDate, "yyyy年MM月dd日", new Date())
+        const currentDate = new Date();
+        const timeDifference = dueDate - currentDate;
+        const daysUntilDue = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        return daysUntilDue;
+    }
+
     return (
         <li key={todo.id} className={styles.li}>
             {todo.completed === true ? <span>✅</span> : "未完了"}
             <p>{todo.text}</p>
-            <span>期日:{todo.dueDate}</span>
+            <p>
+                <span>期日:{todo.dueDate}</span>
+                <div>期日まで<span style={{color: "red"}}>{calculateDaysUntilDueDate()}</span>日</div>
+            </p>
             <span>
                 優先度:
                 {
