@@ -38,6 +38,12 @@ const AddTodoForm = () => {
         setPriority("3");
     }
 
+    const handleClear = () => {
+        setInputValue("");
+        setDueDate(new Date());
+        setPriority("3");
+    }
+
     const handleChange = (event) => {
         setInputValue(event.target.value);
     }
@@ -95,6 +101,7 @@ const AddTodoForm = () => {
                 <ReactDatePicker selected={dueDate} onDateChange={handleDatePickerChange} />
             </div>
             <button onClick={handleClick}>追加</button>
+            <button onClick={handleClear}>クリア</button>
         </div>
     )
 }
