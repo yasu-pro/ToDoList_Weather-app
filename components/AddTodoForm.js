@@ -8,7 +8,7 @@ import {format} from "date-fns"
 const AddTodoForm = () => {
     const [inputValue, setInputValue ] = useState('');
     const [dueDate, setDueDate] = useState(new Date());
-    const [priority, setPriority] = useState('low');
+    const [priority, setPriority] = useState("1");
     const dispatch = useDispatch();
 
     const createId = () => {
@@ -17,6 +17,8 @@ const AddTodoForm = () => {
 
     const handleClick = () => {
         const id = createId();
+        const now = Date.now();
+
         dispatch(
             addTodo(
                 {
@@ -26,12 +28,14 @@ const AddTodoForm = () => {
                     completed: false,
                     dueDate:format(dueDate, "yyyy年MM月dd日"),
                     priority:priority,
+                    sortBy: "addOrder",
+                    addOrder: now,
                 }
             )
         )
         setInputValue("");
         setDueDate(new Date());
-        setPriority("low");
+        setPriority("1");
     }
 
     const handleChange = (event) => {
@@ -59,8 +63,8 @@ const AddTodoForm = () => {
                         type="radio"
                         id="low"
                         name="priority"
-                        value="low"
-                        checked={priority === "low"}
+                        value="1"
+                        checked={priority === "1"}
                         onChange={handlePriorityChange}
                     />
                     <label htmlFor="low">低</label>
@@ -69,8 +73,8 @@ const AddTodoForm = () => {
                         type="radio"
                         id="medium"
                         name="priority"
-                        value="medium"
-                        checked={priority === "medium"}
+                        value="2"
+                        checked={priority === "2"}
                         onChange={handlePriorityChange}
                     />
                     <label htmlFor="medium">中</label>
@@ -79,8 +83,8 @@ const AddTodoForm = () => {
                         type="radio"
                         id="high"
                         name="priority"
-                        value="high"
-                        checked={priority === "high"}
+                        value="3"
+                        checked={priority === "3"}
                         onChange={handlePriorityChange}
                     />
                     <label htmlFor="high">高</label>
