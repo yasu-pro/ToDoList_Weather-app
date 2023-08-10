@@ -29,9 +29,17 @@ const todosReducer = createSlice({
     showEditForm: (state, action) => {
       const {id, isEditFormVisible} = action.payload;
       state.listData[id].isEditFormVisible = isEditFormVisible;
+    },
+
+    changeSortBy: (state, action) => {
+      const sortBy = action.payload;
+      const todosArray = Object.values(state.listData);
+      todosArray.map((todo) => {
+        todo.sortBy = sortBy;
+      })
     }
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo, editTodoAction, showEditForm } = todosReducer.actions;
+export const { addTodo, deleteTodo, completeTodo, editTodoAction, showEditForm, changeSortBy } = todosReducer.actions;
 export default todosReducer.reducer;
