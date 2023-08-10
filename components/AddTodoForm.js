@@ -8,7 +8,7 @@ import {format} from "date-fns"
 const AddTodoForm = () => {
     const [inputValue, setInputValue ] = useState('');
     const [dueDate, setDueDate] = useState(new Date());
-    const [priority, setPriority] = useState("1");
+    const [priority, setPriority] = useState("3");
     const dispatch = useDispatch();
 
     const createId = () => {
@@ -35,7 +35,7 @@ const AddTodoForm = () => {
         )
         setInputValue("");
         setDueDate(new Date());
-        setPriority("1");
+        setPriority("3");
     }
 
     const handleChange = (event) => {
@@ -63,8 +63,8 @@ const AddTodoForm = () => {
                         type="radio"
                         id="low"
                         name="priority"
-                        value="1"
-                        checked={priority === "1"}
+                        value="3"
+                        checked={priority === "3"}
                         onChange={handlePriorityChange}
                     />
                     <label htmlFor="low">低</label>
@@ -83,8 +83,8 @@ const AddTodoForm = () => {
                         type="radio"
                         id="high"
                         name="priority"
-                        value="3"
-                        checked={priority === "3"}
+                        value="1"
+                        checked={priority === "1"}
                         onChange={handlePriorityChange}
                     />
                     <label htmlFor="high">高</label>

@@ -12,6 +12,7 @@ const SortButtonGroup = () => {
         <div>
             <button onClick={() => handleClick("addOrder")}>追加順</button>
             <button onClick={() => handleClick("dueDate")}>期日順</button>
+            <button onClick={() => handleClick("priority")}>優先度順</button>
         </div>
     )
 }

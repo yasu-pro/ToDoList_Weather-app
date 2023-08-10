@@ -33,8 +33,8 @@ const EditTodoForm = ({todo}) => {
                         type="radio"
                         id={`low-${editedTodo.id}`}
                         name={`editedPriority-${editedTodo.id}`}
-                        value="low"
-                        checked={editedTodo.priority === "low"}
+                        value="3"
+                        checked={editedTodo.priority === "3"}
                         onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
                     />
                     <label htmlFor={`low-${editedTodo.id}`}>低</label>
@@ -43,8 +43,8 @@ const EditTodoForm = ({todo}) => {
                         type="radio"
                         id={`medium-${editedTodo.id}`}
                         name={`editedPriority-${editedTodo.id}`}
-                        value="medium"
-                        checked={editedTodo.priority === "medium"}
+                        value="2"
+                        checked={editedTodo.priority === "2"}
                         onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
                     />
                     <label htmlFor={`medium-${editedTodo.id}`}>中</label>
@@ -53,8 +53,8 @@ const EditTodoForm = ({todo}) => {
                         type="radio"
                         id={`high-${editedTodo.id}`}
                         name={`editedPriority-${editedTodo.id}`}
-                        value="high"
-                        checked={editedTodo.priority === "high"}
+                        value="1"
+                        checked={editedTodo.priority === "1"}
                         onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
                     />
                     <label htmlFor={`high-${editedTodo.id}`}>高</label>

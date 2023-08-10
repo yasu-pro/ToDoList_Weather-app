@@ -42,11 +42,11 @@ const TodoItem = ({ todo }) => {
                 {
                     (()=>{
                         switch (todo.priority) {
-                            case "1":
+                            case "3":
                                 return "低";
                             case "2":
                                 return "中";
-                            case "3":
+                            case "1":
                                 return "高";
                             default:
                                 return "";
