@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import AddTodoForm from "../components/AddTodoForm"
 import TodoList from "../components/TodoList";
 import TodoSummary from "../components/TodoSummary";
+import SortButtonGroup from "../components/SortButtonGroup";
 import { useSelector } from "react-redux";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
                 <TodoList todos={listData} />
                 <AddTodoForm />
                 <TodoSummary todos={listData}/>
+                <SortButtonGroup todos={listData}/>
             </div>
         </Layout>
     )
