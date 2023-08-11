@@ -28,8 +28,9 @@ const AddTodoForm = () => {
                     completed: false,
                     dueDate:format(dueDate, "yyyy年MM月dd日"),
                     priority:priority,
-                    sortBy: "addOrder",
                     addOrder: now,
+                    sortBy: "addOrder",
+                    sortOrder: "asc"
                 }
             )
         )
