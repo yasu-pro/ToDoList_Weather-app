@@ -45,9 +45,13 @@ const todosReducer = createSlice({
       todosArray.map((todo) => {
         todo.sortOrder = sortOrder;
       })
+    },
+
+    clearAllTodos: (state) => {
+      state.listData = {}
     }
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo, editTodoAction, showEditForm, changeSortBy, changeSortOrder } = todosReducer.actions;
+export const { addTodo, deleteTodo, completeTodo, editTodoAction, showEditForm, changeSortBy, changeSortOrder, clearAllTodos } = todosReducer.actions;
 export default todosReducer.reducer;

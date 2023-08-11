@@ -4,6 +4,7 @@ import AddTodoForm from "../components/AddTodoForm"
 import TodoList from "../components/TodoList";
 import TodoSummary from "../components/TodoSummary";
 import SortButtonGroup from "../components/SortButtonGroup";
+import ClearAllButton from "../components/ClearAllButton";
 import { useSelector } from "react-redux";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
                 <AddTodoForm />
                 <TodoSummary todos={listData}/>
                 <SortButtonGroup todos={listData}/>
+                <ClearAllButton />
             </div>
         </Layout>
     )
