@@ -10,6 +10,7 @@ const ReactDatePicker = ({ selected, onDateChange }) => {
 
   return (
     <DatePicker
+      showIcon
       dateFormat="yyyy年MM月dd日"
       selected={selected}
       onChange={(date) => handleDateChange(date)}
