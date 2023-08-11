@@ -12,7 +12,6 @@ const SortButtonGroup = () => {
 
     const handleSortOrderChange = (event) => {
         const targetSortOrder = event.target.value
-        // console.log("hoge", targetSortOrder );
         dispatch(changeSortOrder( targetSortOrder ))
         setSortOrder( targetSortOrder )
     }
