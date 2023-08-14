@@ -1,5 +1,4 @@
 import React from "react";
-import styles from './TodoItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
 import EditTodoForm from "./EditTodoForm"
@@ -30,37 +29,56 @@ const TodoItem = ({ todo }) => {
     }
 
     return (
-        <li key={todo.id} className={styles.li}>
-            {todo.completed === true ? <span>✅</span> : "未完了"}
-            <p>{todo.text}</p>
-            <p>
-                <span>期日:{todo.dueDate}</span>
-                <div>期日まで<span style={{color: "red"}}>{calculateDaysUntilDueDate()}</span>日</div>
-            </p>
-            <span>
-                優先度:
-                {
-                    (()=>{
-                        switch (todo.priority) {
-                            case "3":
-                                return "低";
-                            case "2":
-                                return "中";
-                            case "1":
-                                return "高";
-                            default:
-                                return "";
-                        }
-                    })()
-                }
-            </span>
-            <div>
-                <span>完了:</span>
-                <input type="checkbox" checked={todo.completed} onChange={() => handleComplete(todo.id)} />
-            </div>
+        <li key={todo.id} className="pt-5 pb-5 flex justify-between items-center">
 
-            <button onClick={() => handleDelete(todo.id)}>削除</button>
-            <button onClick={() => handleIsEditFormVisible(todo.id,true)}>編集</button>
+            <div>
+                <div className="flex items-center gap-x-3">
+                    <span>
+                        {
+                            (()=>{
+                                switch (todo.priority) {
+                                    case "3":
+                                        return <svg className="w-1 h-1 block align-middle fill-green-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;
+                                    case "2":
+                                        return <svg className="w-1 h-1 block align-middle fill-yellow-300" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
+                                    case "1":
+                                        return <svg className="w-1 h-1 block align-middle fill-red-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
+                                    default:
+                                        return "";
+                                }
+                            })()
+                        }
+                    </span>
+
+                    <p className="w-40 overflow-hidden text-sm leading-6 font-semibold">{todo.text}</p>
+
+                    <p className={`text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 only:border-red-500" :"bg-green-100 border-green-500"}`}>
+                        <span className={`${todo.completed !== true ? "text-red-600" : "text-green-600"} leading-4 font-normal`}>
+                            {todo.completed !== true ? "InComplete" : "Complete"}
+                        </span>
+                    </p>
+
+                    <div>
+                        <p className="text-xs">期日まで<span className="text-xl text-red-600">{calculateDaysUntilDueDate()}</span>日</p>
+                    </div>
+                </div>
+
+                <div className="text-xs leading-6 font-semibold mt-2 flex items-center text-gray-500 dark:text-gray-300">
+                    <p className="">期日:{todo.dueDate}</p>
+                </div>
+            </div>
+            
+            {/* {todo.completed === true ? <span>✅</span> : "未完了"} */}
+
+            <div className="flex items-center">
+                <span className="bg-opacity-5 rounded-md inline-flex">
+                    <button className="common-button first:rounded-l-md" onClick={()=>handleComplete(todo.id)} >
+                        {todo.completed !== true ? "完了":"未完了" }
+                    </button>
+                    <button className="common-button" onClick={() => handleIsEditFormVisible(todo.id,true)}>編集</button>
+                    <button className="common-button last:rounded-r-md" onClick={() => handleDelete(todo.id)}>削除</button>
+                </span>
+            </div>
 
             {todo.isEditFormVisible && <EditTodoForm todo={todo} />}
         </li>

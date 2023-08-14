@@ -8,7 +8,7 @@ const TodoList = ({ todos }) => {
     const sortedTodos = SortOptions({todos})
 
     return (
-        <ul className={styles.list}>
+        <ul className="pt-3 pr-6 pb-3 pl-6">
             {sortedTodos.length > 0 ? (
                 sortedTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
             ) : (
