@@ -12,7 +12,7 @@ export default function Home() {
     const listData = allTodoListData ? Object.values(allTodoListData) : [];
     return (
         <Layout>
-            <div>
+            <div className="md:pl-8 md:pr-8 sm:pl-6 sm:pr-6 pt-12 pb-12 pl-4 pr-4">
                 <TodoList todos={listData} />
                 <AddTodoForm />
                 <TodoSummary todos={listData}/>

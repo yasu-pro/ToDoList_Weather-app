@@ -29,7 +29,7 @@ const TodoItem = ({ todo }) => {
     }
 
     return (
-        <li key={todo.id} className="pt-5 pb-5 flex justify-between items-center">
+        <li key={todo.id} className="pt-5 pr-3 pb-5 pl-3 flex justify-between items-center">
 
             <div>
                 <div className="flex items-center gap-x-3">
@@ -50,7 +50,7 @@ const TodoItem = ({ todo }) => {
                         }
                     </span>
 
-                    <p className="w-40 overflow-hidden text-sm leading-6 font-semibold">{todo.text}</p>
+                    <p className="w-40 truncate overflow-hidden text-sm leading-6 font-semibold">{todo.text}</p>
 
                     <p className={`text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 only:border-red-500" :"bg-green-100 border-green-500"}`}>
                         <span className={`${todo.completed !== true ? "text-red-600" : "text-green-600"} leading-4 font-normal`}>

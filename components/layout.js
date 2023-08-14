@@ -7,7 +7,7 @@ const siteTitle = 'ToDoリスト';
 
 const Layout = ({children}) => {
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <link rel="icon" href="/favicon.ico" />
                 <meta
