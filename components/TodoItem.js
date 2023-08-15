@@ -64,8 +64,8 @@ const TodoItem = ({ todo }) => {
                     </div>
                 </div>
 
-                <div className="text-xs leading-6 font-semibold mt-2 flex items-center text-gray-500 dark:text-gray-300">
-                    <p className="">期日:{todo.dueDate}</p>
+                <div className="mt-2 flex items-center">
+                    <p className="text-xs leading-6 font-semibold text-gray-500 dark:text-gray-300">期日:{todo.dueDate}</p>
                 </div>
             </div>
 
