@@ -13,7 +13,9 @@ export default function Home() {
     return (
         <Layout>
             <div className="md:pl-8 md:pr-8 sm:pl-6 sm:pr-6 pt-12 pb-12 pl-4 pr-4">
-                <TodoList todos={listData} />
+                <div className="pt-5 pr-5 pb-5 pl-5">
+                    <TodoList todos={listData} />
+                </div>
                 <AddTodoForm />
                 <TodoSummary todos={listData}/>
                 <SortButtonGroup todos={listData}/>
