@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
-import EditTodoForm from "./EditTodoForm"
+import EditTodoForm from "./ModalEditTodoForm"
 import { parse } from "date-fns"
 
 const TodoItem = ({ todo }) => {
@@ -29,7 +29,7 @@ const TodoItem = ({ todo }) => {
     }
 
     return (
-        <li key={todo.id} className="pt-5 pr-3 pb-5 pl-3 flex justify-between items-center">
+        <li key={todo.id} className="pt-5 pr-3 pb-5 pl-3 flex justify-between items-center transition duration-300 ease-in-out hover:bg-gray-100">
 
             <div>
                 <div className="flex items-center gap-x-3">
@@ -67,7 +67,7 @@ const TodoItem = ({ todo }) => {
                     <p className="">期日:{todo.dueDate}</p>
                 </div>
             </div>
-            
+
             {/* {todo.completed === true ? <span>✅</span> : "未完了"} */}
 
             <div className="flex items-center">
