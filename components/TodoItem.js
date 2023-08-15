@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
 import EditTodoForm from "./ModalEditTodoForm"
 import { parse } from "date-fns"
+import customButtonStyles from "../styles/customButton.module.css";
 
 const TodoItem = ({ todo }) => {
     const dispatch = useDispatch();
@@ -52,7 +53,7 @@ const TodoItem = ({ todo }) => {
 
                     <p className="w-40 truncate overflow-hidden text-sm leading-6 font-semibold">{todo.text}</p>
 
-                    <p className={`text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 only:border-red-500" :"bg-green-100 border-green-500"}`}>
+                    <p className={`w-24 text-center text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 only:border-red-500" :"bg-green-100 border-green-500"}`}>
                         <span className={`${todo.completed !== true ? "text-red-600" : "text-green-600"} leading-4 font-normal`}>
                             {todo.completed !== true ? "InComplete" : "Complete"}
                         </span>
@@ -72,11 +73,11 @@ const TodoItem = ({ todo }) => {
 
             <div className="flex items-center">
                 <span className="bg-opacity-5 rounded-md inline-flex">
-                    <button className="common-button first:rounded-l-md" onClick={()=>handleComplete(todo.id)} >
+                    <button className={customButtonStyles.commonButton} onClick={()=>handleComplete(todo.id)} >
                         {todo.completed !== true ? "完了":"未完了" }
                     </button>
-                    <button className="common-button" onClick={() => handleIsEditFormVisible(todo.id,true)}>編集</button>
-                    <button className="common-button last:rounded-r-md" onClick={() => handleDelete(todo.id)}>削除</button>
+                    <button className={customButtonStyles.commonButton} onClick={() => handleIsEditFormVisible(todo.id,true)}>編集</button>
+                    <button className={customButtonStyles.commonButton} onClick={() => handleDelete(todo.id)}>削除</button>
                 </span>
             </div>
 

@@ -6,21 +6,24 @@ import { Button } from "@mui/material";
 import Modal from "react-modal";
 import ReactDatePicker from "./DatePicker";
 import { editTodoAction, showEditForm } from "../redux/todosReducer";
+import customButtonStyles from "../styles/customButton.module.css";
 
 const EditTodoForm = ({todo}) => {
 
     const customStyles = {
         content: {
-          top: "30%",
-          left: "50%",
-          right: "auto",
-          bottom: "auto",
-          overflow: "visible",
-          marginRight: "-50%",
-          transform: "translate(-50%, -50%)",
-          minWidth: "40%",
-          padding: "0",
-          borderRadius: "0.375rem",
+            top: "30%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            overflow: "visible",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            minWidth: "40%",
+            padding: "0",
+            borderRadius: "0.375rem",
+            border:"1px solid rgba(0, 0, 0, 0.12)",
+            boxShadow: "0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)",
         },
       };
 
@@ -90,7 +93,7 @@ const EditTodoForm = ({todo}) => {
                     </div>
 
                     <div className="pt-3">
-                        <p>期限:</p>
+                        <p>期限 : </p>
                         <ReactDatePicker id="editedDueDate"
                             selected={parse(editedTodo.dueDate, "yyyy年MM月dd日", new Date())}
                             onDateChange={(date) => setEditedTodo({...editedTodo, dueDate: format(date, "yyyy年MM月dd日")})}
@@ -99,12 +102,13 @@ const EditTodoForm = ({todo}) => {
                 </div>
             </div>
 
-            <div className="pt-5 pr-5 pb-5 pl-5 flex justify-end border-t border-solid customGray bg-gray-100">
+            <div className="pt-5 pr-5 pb-5 pl-5 flex justify-end border-t border-solid bg-gray-100 overflow-hidden rounded-tl-md rounded-tr-md rounded-bl-lg rounded-br-lg">
                 <Button
                     variant="outlined"
                     color="primary"
                     onClick={handleEditCancel}
                     sx={{ marginRight: "0.5rem" }}
+                    className={customButtonStyles.customFormButton}
                 >
                     キャンセル
                 </Button>
@@ -112,6 +116,7 @@ const EditTodoForm = ({todo}) => {
                     variant="contained"
                     color="primary"
                     onClick={handleEditComplete}
+                    className={`${customButtonStyles.customFormButton} ${customButtonStyles.customFormClearButton}`}
                 >
                     修正完了
                 </Button>

@@ -1,9 +1,12 @@
 
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
+import {format} from "date-fns"
+import { Button } from "@mui/material";
 import { addTodo } from "../redux/todosReducer";
 import ReactDatePicker from "./DatePicker";
-import {format} from "date-fns"
+import customBoxStyles from "../styles/customBox.module.css";
+import customButtonStyles from "../styles/customButton.module.css";
 
 const AddTodoForm = () => {
     const [inputValue, setInputValue ] = useState('');
@@ -58,52 +61,83 @@ const AddTodoForm = () => {
     }
 
     return (
-        <div style={{ border: "1px solid green" }}>
-            <div>
-                <span>内容:</span>
-                <input type="text" onChange={handleChange} value={inputValue}/>
-            </div>
-            <div>
-                <span>優先度:</span>
-                <div>
-                    <input
-                        type="radio"
-                        id="low"
-                        name="priority"
-                        value="3"
-                        checked={priority === "3"}
-                        onChange={handlePriorityChange}
-                    />
-                    <label htmlFor="low">低</label>
+        <section className={customBoxStyles.customBox}>
+            <div className="pt-5 pr-5 pb-5 pl-5">
+                <p className="text-lg font-semibold">新規タスク</p>
 
-                    <input
-                        type="radio"
-                        id="medium"
-                        name="priority"
-                        value="2"
-                        checked={priority === "2"}
-                        onChange={handlePriorityChange}
-                    />
-                    <label htmlFor="medium">中</label>
+                <div className="pr-3 pl-3">
+                    <div className="pt-3">
+                        <p>内容 : </p>
+                        <input className="w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100" type="text" onChange={handleChange} value={inputValue}/>
+                    </div>
 
-                    <input
-                        type="radio"
-                        id="high"
-                        name="priority"
-                        value="1"
-                        checked={priority === "1"}
-                        onChange={handlePriorityChange}
-                    />
-                    <label htmlFor="high">高</label>
+                    <div className="pt-3">
+                        <p>優先度 : </p>
+                        <div className="pt-1 w-36 flex items-center justify-between">
+                            <div>
+                                <input
+                                type="radio"
+                                id="low"
+                                name="priority"
+                                value="3"
+                                checked={priority === "3"}
+                                onChange={handlePriorityChange}
+                                />
+                                <label className="ml-1" htmlFor="low">低</label>
+                            </div>
+
+                            <div>
+                                <input
+                                type="radio"
+                                id="medium"
+                                name="priority"
+                                value="2"
+                                checked={priority === "2"}
+                                onChange={handlePriorityChange}
+                                />
+                                <label className="ml-1" htmlFor="medium">中</label>
+                            </div>
+
+                            <div>
+                                <input
+                                type="radio"
+                                id="high"
+                                name="priority"
+                                value="1"
+                                checked={priority === "1"}
+                                onChange={handlePriorityChange}
+                                />
+                                <label className="ml-1" htmlFor="high">高</label>
+                            </div>
+                        </div>
+                        <div className="pt-3">
+                            <p>期日 : </p>
+                            <ReactDatePicker selected={dueDate} onDateChange={handleDatePickerChange} />
+                        </div>
+                    </div>
                 </div>
+                
             </div>
-            <div>
-                <span>期日:</span>
-                <ReactDatePicker selected={dueDate} onDateChange={handleDatePickerChange} />
+            <div className="pt-5 pr-5 pb-5 pl-5 flex justify-end border-t border-solid customGray bg-gray-100">
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleClear}
+                    sx={{ marginRight: "0.5rem" }}
+                    className={customButtonStyles.customFormButton}
+                >
+                    クリア
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleClick}
+                    className={`${customButtonStyles.customFormButton} ${customButtonStyles.customFormClearButton}`}
+                >
+                    追加
+                </Button>
             </div>
-            <button onClick={handleClick}>追加</button>
-            <button onClick={handleClear}>クリア</button>
-        </div>
+        </section>
     )
 }
 
