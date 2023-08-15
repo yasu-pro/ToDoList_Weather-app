@@ -1,0 +1,123 @@
+
+import React, { useState } from "react";
+import { format, parse } from "date-fns"
+import { useDispatch } from 'react-redux';
+import { Button } from "@mui/material";
+import Modal from "react-modal";
+import ReactDatePicker from "./DatePicker";
+import { editTodoAction, showEditForm } from "../redux/todosReducer";
+
+const EditTodoForm = ({todo}) => {
+
+    const customStyles = {
+        content: {
+          top: "30%",
+          left: "50%",
+          right: "auto",
+          bottom: "auto",
+          overflow: "visible",
+          marginRight: "-50%",
+          transform: "translate(-50%, -50%)",
+          minWidth: "40%",
+          padding: "0",
+          borderRadius: "0.375rem",
+        },
+      };
+
+    const [editedTodo, setEditedTodo] = useState(todo);
+    const dispatch = useDispatch();
+
+    const handleEditComplete = () => {
+        const updatedTodo = { ...editedTodo, isEditFormVisible: false };
+        setEditedTodo(updatedTodo);
+        dispatch(editTodoAction(updatedTodo));
+    }
+
+    const handleEditCancel = () => {
+        dispatch(showEditForm({ id: todo.id, isEditFormVisible: false }));
+    }
+
+    return (
+        <Modal isOpen={editedTodo.isEditFormVisible} style={customStyles}>
+            <div className="pt-5 pr-5 pb-5 pl-5">
+                <p className="text-lg font-semibold">編集</p>
+
+                <div className="pr-3 pl-3">
+                    <div className="pt-3">
+                        <p>内容 : </p>
+                        <input className="w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100" value={editedTodo.text} onChange={(e) => setEditedTodo({ ...editedTodo, text: e.target.value })}/>
+                    </div>
+
+                    <div className="pt-3">
+                        <p>優先度 : </p>
+                        <div className="pt-1 w-36 flex items-center justify-between">
+                            <div>
+                                <input
+                                    type="radio"
+                                    id={`low-${editedTodo.id}`}
+                                    name={`editedPriority-${editedTodo.id}`}
+                                    value="3"
+                                    checked={editedTodo.priority === "3"}
+                                    onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
+                                />
+                                <label className="ml-1" htmlFor={`low-${editedTodo.id}`}>低</label>
+                            </div>
+
+                            <div>
+                                <input
+                                    type="radio"
+                                    id={`medium-${editedTodo.id}`}
+                                    name={`editedPriority-${editedTodo.id}`}
+                                    value="2"
+                                    checked={editedTodo.priority === "2"}
+                                    onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
+                                />
+                                <label className="ml-1" htmlFor={`medium-${editedTodo.id}`}>中</label>
+                            </div>
+
+                            <div>
+                                <input
+                                    type="radio"
+                                    id={`high-${editedTodo.id}`}
+                                    name={`editedPriority-${editedTodo.id}`}
+                                    value="1"
+                                    checked={editedTodo.priority === "1"}
+                                    onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
+                                />
+                                <label className="ml-1" htmlFor={`high-${editedTodo.id}`}>高</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="pt-3">
+                        <p>期限:</p>
+                        <ReactDatePicker id="editedDueDate"
+                            selected={parse(editedTodo.dueDate, "yyyy年MM月dd日", new Date())}
+                            onDateChange={(date) => setEditedTodo({...editedTodo, dueDate: format(date, "yyyy年MM月dd日")})}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="pt-5 pr-5 pb-5 pl-5 flex justify-end border-t border-solid customGray bg-gray-100">
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleEditCancel}
+                    sx={{ marginRight: "0.5rem" }}
+                >
+                    キャンセル
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleEditComplete}
+                >
+                    修正完了
+                </Button>
+            </div>
+        </Modal>
+    )
+}
+
+export default EditTodoForm;
