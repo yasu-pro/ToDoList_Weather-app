@@ -1,9 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
-import '../styles/tailwind.css';
+import Modal from 'react-modal';
 import '../styles/global.css';
 
+Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }) {
   return (
