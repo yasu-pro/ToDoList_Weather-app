@@ -53,7 +53,7 @@ const TodoItem = ({ todo }) => {
 
                     <p className="w-40 truncate overflow-hidden text-sm leading-6 font-semibold">{todo.text}</p>
 
-                    <p className={`w-24 text-center text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 only:border-red-500" :"bg-green-100 border-green-500"}`}>
+                    <p className={`w-24 text-center text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 border-red-500" :"bg-green-100 border-green-500"}`}>
                         <span className={`${todo.completed !== true ? "text-red-600" : "text-green-600"} leading-4 font-normal`}>
                             {todo.completed !== true ? "InComplete" : "Complete"}
                         </span>
