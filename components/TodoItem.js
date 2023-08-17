@@ -22,11 +22,18 @@ const TodoItem = ({ todo }) => {
     }
 
     const calculateDaysUntilDueDate =() => {
-        const dueDate = parse(todo.dueDate, "yyyy年MM月dd日", new Date())
+        const dueDate = parse(todo.dueDate, "yyyy年MM月dd日", new Date());
         const currentDate = new Date();
-        const timeDifference = dueDate - currentDate;// ミリ秒単位の差分
+        const timeDifference = dueDate - currentDate; // ミリ秒単位の差分
         const daysUntilDue = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // 日数に変換して切り上げ
-        return daysUntilDue;
+
+        if (daysUntilDue <= 30) {
+            return `${daysUntilDue}日`;
+        } else {
+            // 日数を30で割って簡易的な月数に変換
+            const monthsUntilDue = Math.floor(daysUntilDue / 30);
+            return `${monthsUntilDue}ヶ月`;
+        }
     }
 
     return (
@@ -60,7 +67,10 @@ const TodoItem = ({ todo }) => {
                     </p>
 
                     <div>
-                        <p className="text-xs">期日まで<span className="text-xl text-red-600">{calculateDaysUntilDueDate()}</span>日</p>
+                        <p className="text-xs">
+                            期日まで
+                            <span className="text-lg text-red-600">{calculateDaysUntilDueDate()}</span>
+                        </p>
                     </div>
                 </div>
 
