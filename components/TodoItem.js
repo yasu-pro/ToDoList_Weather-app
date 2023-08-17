@@ -75,7 +75,7 @@ const TodoItem = ({ todo }) => {
                             ) : (
                                 <>
                                     期日まで
-                                    <span className="text-lg text-red-600">{calculateDaysUntilDueDate()}</span>
+                                    <span className="ml-1 text-lg text-red-600">{calculateDaysUntilDueDate()}</span>
                                 </>
                             )}
                         </p>
@@ -86,8 +86,6 @@ const TodoItem = ({ todo }) => {
                     <p className="text-xs leading-6 font-semibold text-gray-500 dark:text-gray-300">期日:{todo.dueDate}</p>
                 </div>
             </div>
-
-            {/* {todo.completed === true ? <span>✅</span> : "未完了"} */}
 
             <div className="flex items-center">
                 <span className="bg-opacity-5 rounded-md inline-flex">

@@ -62,7 +62,7 @@ const AddTodoForm = () => {
     }
 
     return (
-        <section className={customBoxStyles.customBox}>
+        <section className={`${customBoxStyles.customBox} flex flex-col justify-between`}>
             <div className="pt-5 pr-5 pb-5 pl-5">
                 <p className="text-lg font-semibold">新規タスク</p>
 

@@ -8,7 +8,7 @@ const TodoList = ({ todos }) => {
     const sortedTodos = SortOptions({todos})
 
     return (
-        <ul className="max-w-screen-lg mx-auto">
+        <ul className="mx-auto">
             {sortedTodos.length > 0 ? (
                 sortedTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
             ) : (

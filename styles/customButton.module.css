@@ -47,7 +47,6 @@
     background-position: right 0.5rem center;
     background-repeat: no-repeat;
     background-size: 1.5em 1.5em;
-    width: 7rem;
 }
 
 .cusotmSortButton:first-child {
@@ -61,6 +60,7 @@
 }
 
 .customClearAllButton {
+    width: 100%;
     color: rgb(220 38 38 );
     background-color: rgb(254 226 226);
     border-color: rgb(239 68 68 );
