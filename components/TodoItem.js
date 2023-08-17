@@ -27,7 +27,9 @@ const TodoItem = ({ todo }) => {
         const timeDifference = dueDate - currentDate; // ミリ秒単位の差分
         const daysUntilDue = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // 日数に変換して切り上げ
 
-        if (daysUntilDue <= 30) {
+        if (daysUntilDue < 0) {
+            return 'expired';
+        } else if (daysUntilDue <= 30) {
             return `${daysUntilDue}日`;
         } else {
             // 日数を30で割って簡易的な月数に変換
@@ -68,8 +70,14 @@ const TodoItem = ({ todo }) => {
 
                     <div>
                         <p className="text-xs">
-                            期日まで
-                            <span className="text-lg text-red-600">{calculateDaysUntilDueDate()}</span>
+                            {calculateDaysUntilDueDate() === 'expired' ? (
+                                <span className="text-lg text-red-600">期限が過ぎています</span>
+                            ) : (
+                                <>
+                                    期日まで
+                                    <span className="text-lg text-red-600">{calculateDaysUntilDueDate()}</span>
+                                </>
+                            )}
                         </p>
                     </div>
                 </div>
