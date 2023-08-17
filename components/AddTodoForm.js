@@ -7,6 +7,7 @@ import { addTodo } from "../redux/todosReducer";
 import ReactDatePicker from "./DatePicker";
 import customBoxStyles from "../styles/customBox.module.css";
 import customButtonStyles from "../styles/customButton.module.css";
+import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 
 const AddTodoForm = () => {
     const [inputValue, setInputValue ] = useState('');
@@ -75,39 +76,51 @@ const AddTodoForm = () => {
                         <p>優先度 : </p>
                         <div className="pt-1 w-36 flex items-center justify-between">
                             <div>
-                                <input
-                                type="radio"
-                                id="low"
-                                name="priority"
-                                value="3"
-                                checked={priority === "3"}
-                                onChange={handlePriorityChange}
-                                />
-                                <label className="ml-1" htmlFor="low">低</label>
+                                <label className="ml-1" htmlFor="low">
+                                    <input
+                                    type="radio"
+                                    id="low"
+                                    name="priority"
+                                    value="3"
+                                    checked={priority === "3"}
+                                    onChange={handlePriorityChange}
+                                    className={customRadioButtonStyles.customPriorityRadioButton}
+                                    />
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === "3" ? customRadioButtonStyles.lowIcon : ""}`}></span>
+                                    低
+                                </label>
                             </div>
 
                             <div>
-                                <input
-                                type="radio"
-                                id="medium"
-                                name="priority"
-                                value="2"
-                                checked={priority === "2"}
-                                onChange={handlePriorityChange}
-                                />
-                                <label className="ml-1" htmlFor="medium">中</label>
+                                <label className="ml-1" htmlFor="medium">
+                                    <input
+                                    type="radio"
+                                    id="medium"
+                                    name="priority"
+                                    value="2"
+                                    checked={priority === "2"}
+                                    onChange={handlePriorityChange}
+                                    className={customRadioButtonStyles.customPriorityRadioButton}
+                                    />
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === "2" ? customRadioButtonStyles.mediumIcon : ""}`}></span>
+                                    中
+                                </label>
                             </div>
 
                             <div>
-                                <input
-                                type="radio"
-                                id="high"
-                                name="priority"
-                                value="1"
-                                checked={priority === "1"}
-                                onChange={handlePriorityChange}
-                                />
-                                <label className="ml-1" htmlFor="high">高</label>
+                                <label className="ml-1" htmlFor="high">
+                                    <input
+                                    type="radio"
+                                    id="high"
+                                    name="priority"
+                                    value="1"
+                                    checked={priority === "1"}
+                                    onChange={handlePriorityChange}
+                                    className={customRadioButtonStyles.customPriorityRadioButton}
+                                    />
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === "1" ? customRadioButtonStyles.hightIcon : ""}`}></span>
+                                    高
+                                </label>
                             </div>
                         </div>
                         <div className="pt-3">

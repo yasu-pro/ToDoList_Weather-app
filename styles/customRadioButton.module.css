@@ -1,0 +1,53 @@
+/* ラベル全体のスタイル */
+.customPriorityLabel {
+    display: flex;
+    align-items: center;
+}
+
+/* チェックされたラジオボタンのスタイル */
+.customPriorityRadioButton:checked + .customRadioButtonIcon::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    position: absolute;
+}
+
+/* ラジオボタンの非表示化と背景画像のスタイル */
+.customPriorityRadioButton {
+    display: none; /* ラジオボタンを非表示にする */
+}
+
+.customRadioButtonIcon {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid #000;
+    margin-right: 8px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* 相対位置指定 */
+}
+
+/* ラジオボタンのチェック時のスタイル */
+.customPriorityRadioButton:checked + .customRadioButtonIcon {
+    border-color: rgb(0, 0, 0); /* ボーダー色を透明にする */
+    background-color: transparent; /* 背景色を透明にする */
+    background-image: url(../public/circle.svg); /* 背景画像の指定 */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lowIcon::before {
+    background-color: rgb(0, 128, 0);
+}
+
+.mediumIcon::before {
+    background-color: rgb(255, 215, 0);
+}
+
+.hightIcon::before {
+    background-color: rgb(255, 0, 0);
+}
