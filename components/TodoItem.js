@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
 import EditTodoForm from "./ModalEditTodoForm"
 import { parse } from "date-fns"
+import { Popover } from '@headlessui/react';
 import customButtonStyles from "../styles/customButton.module.css";
+import customPopoverStyles from "../styles/customPopover.module.css";
 
 const TodoItem = ({ todo }) => {
     const dispatch = useDispatch();
@@ -88,7 +90,30 @@ const TodoItem = ({ todo }) => {
             </div>
 
             <div className="flex items-center">
-                <span className="bg-opacity-5 rounded-md inline-flex">
+
+                <Popover className={`relative ${customPopoverStyles.popoverWrap}`}>
+                    <Popover.Button className={customPopoverStyles.popoverButton}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="nz sb">
+                        <path d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z">
+                        </path>
+                    </svg>
+                    </Popover.Button>
+                    <Popover.Panel className={`absolute z-10 ${customPopoverStyles.popoverPanel}`}>
+                        <div className="bg-white shadow-md rounded-lg p-2 space-y-2">
+                            <button className={customPopoverStyles.commonButton} onClick={() => handleComplete(todo.id)}>
+                                {todo.completed !== true ? '完了' : '未完了'}
+                            </button>
+                            <button className={customPopoverStyles.commonButton} onClick={() => handleIsEditFormVisible(todo.id, true)}>
+                                編集
+                            </button>
+                            <button className={customPopoverStyles.commonButton} onClick={() => handleDelete(todo.id)}>
+                                削除
+                            </button>
+                        </div>
+                    </Popover.Panel>
+                </Popover>
+
+                <span className={`${customButtonStyles.commonButtonWrap} bg-opacity-5 rounded-md inline-flex`}>
                     <button className={customButtonStyles.commonButton} onClick={()=>handleComplete(todo.id)} >
                         {todo.completed !== true ? "完了":"未完了" }
                     </button>
