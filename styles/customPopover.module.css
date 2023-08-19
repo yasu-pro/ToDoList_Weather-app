@@ -18,8 +18,8 @@
 }
 
 .popoverPanel {
-    right: 50%;
-    transform: translateX(50%);
+    left: -15%;
+    transform: translateX(-50%);
 }
 
 .commonButton {

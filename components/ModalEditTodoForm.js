@@ -13,7 +13,7 @@ const EditTodoForm = ({todo}) => {
 
     const customStyles = {
         content: {
-            top: "30%",
+            top: "35%",
             left: "50%",
             right: "auto",
             bottom: "auto",
