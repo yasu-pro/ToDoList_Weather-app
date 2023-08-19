@@ -68,8 +68,15 @@ const AddTodoForm = () => {
 
                 <div className="pr-2 pl-2 md:pr-3 md:pl-3">
                     <div className="pt-3">
-                        <p>内容 : </p>
-                        <input className="w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100" type="text" onChange={handleChange} value={inputValue}/>
+                        <p>
+                            内容
+                            <span className="mr-1 ml-1 pt-1 pr-1 pb-1 pl-1 text-xs text-red-600 border border-red-500 rounded-sm">
+                            必須
+                            </span>
+                            :
+                        </p>
+                        <input className={`w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 ${inputValue === "" ? "bg-red-100" : "bg-gray-100"}`} type="text" onChange={handleChange} value={inputValue}/>
+                        {inputValue === "" && <span className="text-red-600">文字を入力してください</span>}
                     </div>
 
                     <div className="pt-3">
@@ -145,6 +152,7 @@ const AddTodoForm = () => {
                     variant="contained"
                     color="primary"
                     onClick={handleClick}
+                    disabled={inputValue === ""}
                     className={`${customButtonStyles.customFormButton} ${customButtonStyles.customFormClearButton}`}
                 >
                     追加
