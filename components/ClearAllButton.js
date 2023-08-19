@@ -14,7 +14,6 @@ const ClearAllButton = () => {
     }
 
     return (
-        // <button onClick={handleClearAll}>全削除</button>
         <Button
             variant="outlined"
             color="primary"

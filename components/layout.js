@@ -1,6 +1,5 @@
 
 import Head from 'next/head';
-import styles from './layout.module.scss';
 
 
 const siteTitle = 'ToDoリスト';

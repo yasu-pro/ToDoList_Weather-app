@@ -7,12 +7,13 @@ import Modal from "react-modal";
 import ReactDatePicker from "./DatePicker";
 import { editTodoAction, showEditForm } from "../redux/todosReducer";
 import customButtonStyles from "../styles/customButton.module.css";
+import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 
 const EditTodoForm = ({todo}) => {
 
     const customStyles = {
         content: {
-            top: "30%",
+            top: "35%",
             left: "50%",
             right: "auto",
             bottom: "auto",
@@ -55,39 +56,51 @@ const EditTodoForm = ({todo}) => {
                         <p>優先度 : </p>
                         <div className="pt-1 w-36 flex items-center justify-between">
                             <div>
-                                <input
-                                    type="radio"
-                                    id={`low-${editedTodo.id}`}
-                                    name={`editedPriority-${editedTodo.id}`}
-                                    value="3"
-                                    checked={editedTodo.priority === "3"}
-                                    onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
-                                />
-                                <label className="ml-1" htmlFor={`low-${editedTodo.id}`}>低</label>
+                                <label className="ml-1" htmlFor={`low-${editedTodo.id}`}>
+                                    <input
+                                        type="radio"
+                                        id={`low-${editedTodo.id}`}
+                                        name={`editedPriority-${editedTodo.id}`}
+                                        value="3"
+                                        checked={editedTodo.priority === "3"}
+                                        onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
+                                        className={customRadioButtonStyles.customPriorityRadioButton}
+                                    />
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "3" ? customRadioButtonStyles.lowIcon : ""}`}></span>
+                                    低
+                                </label>
                             </div>
 
                             <div>
-                                <input
-                                    type="radio"
-                                    id={`medium-${editedTodo.id}`}
-                                    name={`editedPriority-${editedTodo.id}`}
-                                    value="2"
-                                    checked={editedTodo.priority === "2"}
-                                    onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
-                                />
-                                <label className="ml-1" htmlFor={`medium-${editedTodo.id}`}>中</label>
+                                <label className="ml-1" htmlFor={`medium-${editedTodo.id}`}>
+                                    <input
+                                        type="radio"
+                                        id={`medium-${editedTodo.id}`}
+                                        name={`editedPriority-${editedTodo.id}`}
+                                        value="2"
+                                        checked={editedTodo.priority === "2"}
+                                        onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
+                                        className={customRadioButtonStyles.customPriorityRadioButton}
+                                    />
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "2" ? customRadioButtonStyles.mediumIcon : ""}`}></span>
+                                    中
+                                </label>
                             </div>
 
                             <div>
-                                <input
-                                    type="radio"
-                                    id={`high-${editedTodo.id}`}
-                                    name={`editedPriority-${editedTodo.id}`}
-                                    value="1"
-                                    checked={editedTodo.priority === "1"}
-                                    onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
-                                />
-                                <label className="ml-1" htmlFor={`high-${editedTodo.id}`}>高</label>
+                                <label className="ml-1" htmlFor={`high-${editedTodo.id}`}>
+                                    <input
+                                        type="radio"
+                                        id={`high-${editedTodo.id}`}
+                                        name={`editedPriority-${editedTodo.id}`}
+                                        value="1"
+                                        checked={editedTodo.priority === "1"}
+                                        onChange={(e) => setEditedTodo({...editedTodo, priority: e.target.value})}
+                                        className={customRadioButtonStyles.customPriorityRadioButton}
+                                    />
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "1" ? customRadioButtonStyles.hightIcon : ""}`}></span>
+                                    高
+                                </label>
                             </div>
                         </div>
                     </div>

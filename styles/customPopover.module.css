@@ -1,0 +1,37 @@
+
+@media (min-width: 768px) {
+    .popoverWrap {
+        display: none;
+    }
+}
+
+.popoverButton {
+    width: 40px;
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 1px;
+}
+
+.popoverPanel {
+    left: -15%;
+    transform: translateX(-50%);
+}
+
+.commonButton {
+    width: 80px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+
+.commonButton:hover {
+    background-color: rgb(243 244 246);
+}
