@@ -62,11 +62,11 @@ const AddTodoForm = () => {
     }
 
     return (
-        <section className={`${customBoxStyles.customBox} flex flex-col justify-between`}>
-            <div className="pt-5 pr-5 pb-5 pl-5">
+        <section className={`${customBoxStyles.customBox} flex flex-col justify-between order-2 md:order-1`}>
+            <div className="pt-4 pr-3 pb-4 pl-3 md:pt-5 md:pr-5 md:pb-5 md:pl-5">
                 <p className="text-lg font-semibold">新規タスク</p>
 
-                <div className="pr-3 pl-3">
+                <div className="pr-2 pl-2 md:pr-3 md:pl-3">
                     <div className="pt-3">
                         <p>内容 : </p>
                         <input className="w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100" type="text" onChange={handleChange} value={inputValue}/>
@@ -131,7 +131,7 @@ const AddTodoForm = () => {
                 </div>
                 
             </div>
-            <div className="pt-5 pr-5 pb-5 pl-5 flex justify-end border-t border-solid customGray bg-gray-100">
+            <div className="pt-3 pr-3 pb-3 pl-3 md:pt-5 md:pr-5 md:pb-5 md:pl-5 flex justify-end border-t border-solid customGray bg-gray-100">
                 <Button
                     variant="outlined"
                     color="primary"

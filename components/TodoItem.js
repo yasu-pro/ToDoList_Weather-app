@@ -41,10 +41,10 @@ const TodoItem = ({ todo }) => {
     }
 
     return (
-        <li key={todo.id} className="pt-5 pr-3 pb-5 pl-3 flex justify-between items-center transition duration-300 ease-in-out hover:bg-gray-100">
+        <li key={todo.id} className="pt-3 pr-3 pb-3 pl-3 flex justify-between items-center transition duration-300 ease-in-out hover:bg-gray-100">
 
             <div>
-                <div className="flex items-center gap-x-3">
+                <div className="flex items-center flex-wrap gap-x-3">
                     <span>
                         {
                             (()=>{
@@ -93,22 +93,31 @@ const TodoItem = ({ todo }) => {
 
                 <Popover className={`relative ${customPopoverStyles.popoverWrap}`}>
                     <Popover.Button className={customPopoverStyles.popoverButton}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="nz sb">
-                        <path d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z">
-                        </path>
-                    </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" className="nz sb">
+                            <path d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z">
+                            </path>
+                        </svg>
                     </Popover.Button>
-                    <Popover.Panel className={`absolute z-10 ${customPopoverStyles.popoverPanel}`}>
+                    <Popover.Panel className={`absolute z-10 ${customPopoverStyles.popoverPanel}`} >
                         <div className="bg-white shadow-md rounded-lg p-2 space-y-2">
-                            <button className={customPopoverStyles.commonButton} onClick={() => handleComplete(todo.id)}>
+                            <Popover.Button className={customPopoverStyles.commonButton} 
+                                onClick={() =>{
+                                    handleComplete(todo.id);
+                                    }}>
                                 {todo.completed !== true ? '完了' : '未完了'}
-                            </button>
-                            <button className={customPopoverStyles.commonButton} onClick={() => handleIsEditFormVisible(todo.id, true)}>
+                            </Popover.Button>
+                            <Popover.Button className={customPopoverStyles.commonButton} 
+                                onClick={() =>{
+                                    handleIsEditFormVisible(todo.id, true);
+                                    }}>
                                 編集
-                            </button>
-                            <button className={customPopoverStyles.commonButton} onClick={() => handleDelete(todo.id)}>
+                            </Popover.Button>
+                            <Popover.Button className={customPopoverStyles.commonButton} 
+                                onClick={() =>{
+                                    handleDelete(todo.id);
+                                    }}>
                                 削除
-                            </button>
+                            </Popover.Button>
                         </div>
                     </Popover.Panel>
                 </Popover>
