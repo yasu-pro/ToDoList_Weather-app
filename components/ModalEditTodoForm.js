@@ -50,7 +50,7 @@ const EditTodoForm = ({todo}) => {
 
                 <div className="pr-3 pl-3">
                     <div className="pt-3">
-                        <p>
+                        <p className="flex">
                             内容
                             <span className="mr-1 ml-1 pt-1 pr-1 pb-1 pl-1 text-xs text-red-600 border border-red-500 rounded-sm">
                             必須
