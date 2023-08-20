@@ -41,7 +41,7 @@ const TodoItem = ({ todo }) => {
     }
 
     return (
-        <li key={todo.id} className="pt-3 pr-3 pb-3 pl-3 flex justify-between items-center transition duration-300 ease-in-out hover:bg-gray-100">
+        <li key={todo.id} className="pt-3 pr-3 pb-3 pl-3 flex justify-between items-center transition duration-300 ease-in-out even:bg-gray-100 md:even:bg-none md:hover:bg-gray-100">
 
             <div>
                 <div className="flex items-center flex-wrap gap-x-3">
@@ -64,23 +64,25 @@ const TodoItem = ({ todo }) => {
 
                     <p className="w-40 truncate overflow-hidden text-sm leading-6 font-semibold">{todo.text}</p>
 
-                    <p className={`w-24 text-center text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 border-red-500" :"bg-green-100 border-green-500"}`}>
-                        <span className={`${todo.completed !== true ? "text-red-600" : "text-green-600"} leading-4 font-normal`}>
-                            {todo.completed !== true ? "InComplete" : "Complete"}
-                        </span>
-                    </p>
-
-                    <div>
-                        <p className="text-xs">
-                            {calculateDaysUntilDueDate() === 'expired' ? (
-                                <span className="text-lg text-red-600">期限が過ぎています</span>
-                            ) : (
-                                <>
-                                    期日まで
-                                    <span className="ml-1 text-lg text-red-600">{calculateDaysUntilDueDate()}</span>
-                                </>
-                            )}
+                    <div className="flex">
+                        <p className={`w-24 text-center text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 border-red-500" :"bg-green-100 border-green-500"}`}>
+                            <span className={`${todo.completed !== true ? "text-red-600" : "text-green-600"} leading-4 font-normal`}>
+                                {todo.completed !== true ? "InComplete" : "Complete"}
+                            </span>
                         </p>
+
+                        <div className="ml-3">
+                            <p className="text-xs">
+                                {calculateDaysUntilDueDate() === 'expired' ? (
+                                    <span className="text-lg text-red-600">期限が過ぎています</span>
+                                ) : (
+                                    <>
+                                        期日まで
+                                        <span className="ml-1 text-lg text-red-600">{calculateDaysUntilDueDate()}</span>
+                                    </>
+                                )}
+                            </p>
+                        </div>
                     </div>
                 </div>
 

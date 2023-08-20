@@ -21,7 +21,7 @@ export default function Home() {
 
                     <AddTodoForm />
 
-                    <div className="order-1 md:order-2">
+                    <div className="order-1 md:order-2 pt-5 border-t border-rgba-[209,213,219] md:pt-0 md:border-t-0">
                         <div>
                             <SortButtonGroup todos={listData}/>
                             <div className="mt-5">

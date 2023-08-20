@@ -20,13 +20,15 @@ const EditTodoForm = ({todo}) => {
             overflow: "visible",
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
+            maxWidth: "900px",
             minWidth: "40%",
+            width: "90%",
             padding: "0",
             borderRadius: "0.375rem",
             border:"1px solid rgba(0, 0, 0, 0.12)",
             boxShadow: "0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)",
         },
-      };
+    };
 
     const [editedTodo, setEditedTodo] = useState(todo);
     const dispatch = useDispatch();
@@ -48,15 +50,22 @@ const EditTodoForm = ({todo}) => {
 
                 <div className="pr-3 pl-3">
                     <div className="pt-3">
-                        <p>内容 : </p>
-                        <input className="w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100" value={editedTodo.text} onChange={(e) => setEditedTodo({ ...editedTodo, text: e.target.value })}/>
+                        <p className="flex">
+                            内容
+                            <span className="mr-1 ml-1 pt-1 pr-1 pb-1 pl-1 text-xs text-red-600 border border-red-500 rounded-sm">
+                            必須
+                            </span>
+                            :
+                        </p>
+                        <input className={`w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100 ${editedTodo.text === "" ? "bg-red-100" : "bg-gray-100"}`} value={editedTodo.text} onChange={(e) => setEditedTodo({ ...editedTodo, text: e.target.value })}/>
+                        {editedTodo.text === "" && <span className="text-red-600">文字を入力してください</span>}
                     </div>
 
                     <div className="pt-3">
                         <p>優先度 : </p>
                         <div className="pt-1 w-36 flex items-center justify-between">
                             <div>
-                                <label className="ml-1" htmlFor={`low-${editedTodo.id}`}>
+                                <label className="ml-1 flex items-center" htmlFor={`low-${editedTodo.id}`}>
                                     <input
                                         type="radio"
                                         id={`low-${editedTodo.id}`}
@@ -72,7 +81,7 @@ const EditTodoForm = ({todo}) => {
                             </div>
 
                             <div>
-                                <label className="ml-1" htmlFor={`medium-${editedTodo.id}`}>
+                                <label className="ml-1 flex items-center" htmlFor={`medium-${editedTodo.id}`}>
                                     <input
                                         type="radio"
                                         id={`medium-${editedTodo.id}`}
@@ -88,7 +97,7 @@ const EditTodoForm = ({todo}) => {
                             </div>
 
                             <div>
-                                <label className="ml-1" htmlFor={`high-${editedTodo.id}`}>
+                                <label className="ml-1 flex items-center" htmlFor={`high-${editedTodo.id}`}>
                                     <input
                                         type="radio"
                                         id={`high-${editedTodo.id}`}
@@ -129,6 +138,7 @@ const EditTodoForm = ({todo}) => {
                     variant="contained"
                     color="primary"
                     onClick={handleEditComplete}
+                    disabled={editedTodo.text === ""}
                     className={`${customButtonStyles.customFormButton} ${customButtonStyles.customFormClearButton}`}
                 >
                     修正完了
