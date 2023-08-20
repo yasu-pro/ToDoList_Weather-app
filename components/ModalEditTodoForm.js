@@ -65,7 +65,7 @@ const EditTodoForm = ({todo}) => {
                         <p>優先度 : </p>
                         <div className="pt-1 w-36 flex items-center justify-between">
                             <div>
-                                <label className="ml-1" htmlFor={`low-${editedTodo.id}`}>
+                                <label className="ml-1 flex items-center" htmlFor={`low-${editedTodo.id}`}>
                                     <input
                                         type="radio"
                                         id={`low-${editedTodo.id}`}
@@ -81,7 +81,7 @@ const EditTodoForm = ({todo}) => {
                             </div>
 
                             <div>
-                                <label className="ml-1" htmlFor={`medium-${editedTodo.id}`}>
+                                <label className="ml-1 flex items-center" htmlFor={`medium-${editedTodo.id}`}>
                                     <input
                                         type="radio"
                                         id={`medium-${editedTodo.id}`}
@@ -97,7 +97,7 @@ const EditTodoForm = ({todo}) => {
                             </div>
 
                             <div>
-                                <label className="ml-1" htmlFor={`high-${editedTodo.id}`}>
+                                <label className="ml-1 flex items-center" htmlFor={`high-${editedTodo.id}`}>
                                     <input
                                         type="radio"
                                         id={`high-${editedTodo.id}`}

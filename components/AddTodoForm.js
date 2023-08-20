@@ -83,7 +83,7 @@ const AddTodoForm = () => {
                         <p>優先度 : </p>
                         <div className="pt-1 w-36 flex items-center justify-between">
                             <div>
-                                <label className="ml-1" htmlFor="low">
+                                <label className="ml-1 flex items-center" htmlFor="low">
                                     <input
                                     type="radio"
                                     id="low"
@@ -99,7 +99,7 @@ const AddTodoForm = () => {
                             </div>
 
                             <div>
-                                <label className="ml-1" htmlFor="medium">
+                                <label className="ml-1 flex items-center" htmlFor="medium">
                                     <input
                                     type="radio"
                                     id="medium"
@@ -115,7 +115,7 @@ const AddTodoForm = () => {
                             </div>
 
                             <div>
-                                <label className="ml-1" htmlFor="high">
+                                <label className="ml-1 flex items-center" htmlFor="high">
                                     <input
                                     type="radio"
                                     id="high"
