@@ -9,7 +9,7 @@ import { editTodoAction, showEditForm } from "../redux/todosReducer";
 import customButtonStyles from "../styles/customButton.module.css";
 import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 
-const EditTodoForm = ({todo}) => {
+const ModalEditTodoForm = ({todo}) => {
 
     const customStyles = {
         content: {
@@ -148,4 +148,4 @@ const EditTodoForm = ({todo}) => {
     )
 }
 
-export default EditTodoForm;
+export default ModalEditTodoForm;

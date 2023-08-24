@@ -1,5 +1,4 @@
-
-import styles  from "./TodoList.module.scss";
+import React from "react";
 import TodoItem from "./TodoItem";
 import SortOptions from "./SortOptions";
 
