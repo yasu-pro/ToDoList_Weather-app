@@ -20,6 +20,7 @@ const ClearAllButton = () => {
             onClick={handleClearAll}
             sx={{ marginRight: "0.5rem" }}
             className={customButtonStyles.customClearAllButton}
+            data-testid="clear-all-button"
         >全削除
         </Button>
     )
