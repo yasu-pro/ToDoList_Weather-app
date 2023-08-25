@@ -3,6 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import { initialState } from './test-data/todos';
 import ClearAllButton from "../components/ClearAllButton";
 
 // モックされたReduxストアを作成
@@ -12,36 +13,6 @@ describe('ClearAllButton コンポーネント', () => {
     let store;
 
     beforeEach(()=>{
-        // 初期状態のステートを作成
-        const initialState = {
-            todos: {
-                listData: {
-                    c3iuwvt: {
-                        id: 'c3iuwvt',
-                        isEditFormVisible: false,
-                        text: 'test',
-                        completed: false,
-                        dueDate: '2023年08月24日',
-                        priority: '2',
-                        addOrder: 1692860835709,
-                        sortBy: 'addOrder',
-                        sortOrder: 'asc'
-                    },
-                    hnn4qj0: {
-                        id: 'hnn4qj0',
-                        isEditFormVisible: false,
-                        text: 'test2',
-                        completed: false,
-                        dueDate: '2023年08月24日',
-                        priority: '3',
-                        addOrder: 1692860842939,
-                        sortBy: 'addOrder',
-                        sortOrder: 'asc'
-                    }
-                }
-            }
-        }
-
         // モックされたストアを作成
         store = mockStore(initialState)
 
@@ -68,6 +39,7 @@ describe('ClearAllButton コンポーネント', () => {
     });
 
     it('ダイアログのOKがクリックされると、storeの値が削除されること', () => {
+        const originalConfirm = window.confirm;
         // ダイアログのOKがクリックされることをシミュレート
         window.confirm = jest.fn().mockReturnValue(true);
 
@@ -86,7 +58,8 @@ describe('ClearAllButton コンポーネント', () => {
     });
 
     it('ダイアログのキャンセルがクリックされると、storeの値はそのままであること', () => {
-         // ダイアログのキャンセルがクリックされることをシミュレート
+        const originalConfirm = window.confirm;
+        // ダイアログのキャンセルがクリックされることをシミュレート
         window.confirm = jest.fn().mockReturnValue(false);
 
         // ClearAllButton をクリックしてアクションをディスパッチ
