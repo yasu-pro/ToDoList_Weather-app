@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
-import EditTodoForm from "./ModalEditTodoForm"
+import ModalEditTodoForm from "./ModalEditTodoForm"
 import { parse } from "date-fns"
 import { Popover } from '@headlessui/react';
 import customButtonStyles from "../styles/customButton.module.css";
@@ -133,7 +133,7 @@ const TodoItem = ({ todo }) => {
                 </span>
             </div>
 
-            {todo.isEditFormVisible && <EditTodoForm todo={todo} />}
+            {todo.isEditFormVisible && <ModalEditTodoForm todo={todo} />}
         </li>
     );
 }
