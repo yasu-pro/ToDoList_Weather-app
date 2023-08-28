@@ -3,8 +3,8 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { initialState } from './test-data/todos';
 import ClearAllButton from "../components/ClearAllButton";
+import { testTodo1 } from './test-data/testTodos';
 
 // モックされたReduxストアを作成
 const mockStore = configureStore([]);
@@ -14,7 +14,13 @@ describe('ClearAllButton コンポーネント', () => {
 
     beforeEach(()=>{
         // モックされたストアを作成
-        store = mockStore(initialState)
+        store = mockStore({
+            todos: {
+                listData: {
+                    [testTodo1.id]: testTodo1
+                }
+            }
+        })
 
         // テスト対象のコンポーネントをレンダリング
         render(
