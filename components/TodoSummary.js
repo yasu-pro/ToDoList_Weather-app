@@ -1,8 +1,11 @@
 import React from "react";
 import customBoxStyles from '../styles/customBox.module.css';
 import customSummaryStyles from '../styles/customSummary.module.css';
+import SortOptions from '../components/SortOptions';
 
-const TodoSummary = ({ sortedListData }) => {
+const TodoSummary = ( allTodoData ) => {
+    const sortedListData = SortOptions(allTodoData);
+
     const totalTodo = sortedListData.length > 0 ? sortedListData.length : 0;
     const uncompleted = sortedListData.length > 0 ? sortedListData.filter(todo => todo.completed === false).length : 0;
     const completedTodo = sortedListData.length > 0 ? sortedListData.filter(todo => todo.completed === true).length : 0;
