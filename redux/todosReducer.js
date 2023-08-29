@@ -39,14 +39,9 @@ const todosReducer = createSlice({
       state.data.ListData[id].isEditFormVisible = isEditFormVisible;
     },
 
-    changeSortBy: (state, action) => {
-      const sortBy = action.payload;
+    changeSort: (state, action) => {
+      const { sortBy, sortOrder } = action.payload;
       state.data.optionData.sortBy = sortBy;
-
-    },
-
-    changeSortOrder: (state, action) => {
-      const sortOrder = action.payload;
       state.data.optionData.sortOrder = sortOrder;
     },
 
@@ -56,5 +51,5 @@ const todosReducer = createSlice({
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo, editTodoAction, showEditForm, changeSortBy, changeSortOrder, clearAllTodos } = todosReducer.actions;
+export const { addTodo, deleteTodo, completeTodo, editTodoAction, showEditForm, changeSort, clearAllTodos } = todosReducer.actions;
 export default todosReducer.reducer;
