@@ -1,11 +1,14 @@
 import React from "react";
 import customBoxStyles from '../styles/customBox.module.css';
 import customSummaryStyles from '../styles/customSummary.module.css';
+import SortOptions from '../components/SortOptions';
 
-const TodoSummary = ( {todos} ) => {
-    const totalTodo = todos.length > 0 ? todos.length : 0;
-    const uncompleted = todos.length > 0 ? todos.filter(todo => todo.completed === false).length : 0;
-    const completedTodo = todos.length > 0 ? todos.filter(todo => todo.completed === true).length : 0;
+const TodoSummary = ( allTodoData ) => {
+    const sortedListData = SortOptions(allTodoData);
+
+    const totalTodo = sortedListData.length > 0 ? sortedListData.length : 0;
+    const uncompleted = sortedListData.length > 0 ? sortedListData.filter(todo => todo.completed === false).length : 0;
+    const completedTodo = sortedListData.length > 0 ? sortedListData.filter(todo => todo.completed === true).length : 0;
     const calculateCompletionRate = () => {
         if (totalTodo === 0) {
             return 0;

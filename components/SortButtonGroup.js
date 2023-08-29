@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeSortBy, changeSortOrder } from "../redux/todosReducer";
+import { changeSort } from "../redux/todosReducer";
 import styles from "../styles/customButton.module.css";
 
 const SortButtonGroup = () => {
     const dispatch = useDispatch();
-    const [sortOrder, setSortOrder] = useState("asc")
+    const [sortOrder, setSortOrder] = useState("asc");
+    const [sortBy, setSortBy] = useState("addOrder");
 
-    const handleChangeSortBy = (event) => {
-        const sortBy = event.target.value;
-        dispatch(changeSortBy( sortBy ));
-    }
+
+    const handleSortChange = (sortByValue, sortOrderValue) => {
+        dispatch(changeSort({ sortBy: sortByValue, sortOrder: sortOrderValue }));
+    };
 
     const handleSortOrderChange = (event) => {
-        const targetSortOrder = event.target.value
-        dispatch(changeSortOrder( targetSortOrder ))
-        setSortOrder( targetSortOrder )
-    }
+        const targetSortOrder = event.target.value;
+        setSortOrder(targetSortOrder);
+        handleSortChange(sortBy, targetSortOrder);
+    };
+
+    const handleChangeSortBy = (event) => {
+        const newSortBy = event.target.value;
+        setSortBy(newSortBy);
+        handleSortChange(newSortBy, sortOrder);
+    };
 
     return (
         <div className='flex items-center'>
@@ -26,7 +33,7 @@ const SortButtonGroup = () => {
                     <option value="dsc">降順</option>
                 </select>
 
-                <select className={`${styles.cusotmSortButton} w-1/2 pt-2 pr-3 pb-2 pl-4`} onChange={handleChangeSortBy}>
+                <select className={`${styles.cusotmSortButton} w-1/2 pt-2 pr-3 pb-2 pl-4`} defaultValue={sortBy} onChange={handleChangeSortBy}>
                     <option value="addOrder">追加順</option>
                     <option value="dueDate">期日順</option>
                     <option value="priority">優先度順</option>
