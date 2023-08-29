@@ -26,18 +26,17 @@ const AddTodoForm = () => {
         dispatch(
             addTodo(
                 {
-                    id:id,
+                    id: String(id),
                     isEditFormVisible: false,
                     text: inputValue,
                     completed: false,
-                    dueDate:format(dueDate, "yyyy年MM月dd日"),
-                    priority:priority,
-                    addOrder: now,
-                    sortBy: "addOrder",
-                    sortOrder: "asc"
+                    dueDate: format(dueDate, "yyyy年MM月dd日"),
+                    priority: priority,
+                    addOrder: now
                 }
             )
         )
+
         setInputValue("");
         setDueDate(new Date());
         setPriority("3");

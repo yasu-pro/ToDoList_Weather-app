@@ -1,15 +1,14 @@
 import React from "react";
 import TodoItem from "./TodoItem";
-import SortOptions from "./SortOptions";
+import SortOptions from '../components/SortOptions';
 
-const TodoList = ({ todos }) => {
-
-    const sortedTodos = SortOptions({todos})
+const TodoList = ( allTodoData ) => {
+    const sortedListData = SortOptions( allTodoData );
 
     return (
         <ul className="mx-auto">
-            {sortedTodos.length > 0 ? (
-                sortedTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+            {sortedListData.length > 0 ? (
+                sortedListData.map((todo) => <TodoItem key={todo.id} todo={todo} />)
             ) : (
                 <p>Todoを追加してください。</p>
             )}

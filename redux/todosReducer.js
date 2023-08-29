@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { listData: {} };
+const initialState = {
+  data: {
+    optionData: {
+      sortBy: "addOrder",
+      sortOrder: "asc",
+    },
+    ListData: {},
+  }
+};
 
 const todosReducer = createSlice({
   name: 'todos',
@@ -8,50 +16,40 @@ const todosReducer = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const id = action.payload.id;
-      state.listData[id] = { ...action.payload, id};
+      state.data.ListData[id] = { ...action.payload, id};
     },
 
     deleteTodo: (state, action) => {
       const id = action.payload;
-      delete state.listData[id];
+      delete state.data.ListData[id];
     },
 
     completeTodo: (state, action) => {
       const {id, isComplete } = action.payload;
-      state.listData[id].completed = isComplete;
+      state.data.ListData[id].completed = isComplete;
     },
 
     editTodoAction: (state, action) => {
       const id = action.payload.id;
-      state.listData[id] = { ...action.payload};
+      state.data.ListData[id] = { ...action.payload};
     },
 
     showEditForm: (state, action) => {
       const {id, isEditFormVisible} = action.payload;
-      state.listData[id].isEditFormVisible = isEditFormVisible;
+      state.data.ListData[id].isEditFormVisible = isEditFormVisible;
     },
 
-    changeSortBy: (state, action) => {
-      const sortBy = action.payload;
-      const todosArray = Object.values(state.listData);
-      todosArray.map((todo) => {
-        todo.sortBy = sortBy;
-      })
-    },
-
-    changeSortOrder: (state, action) => {
-      const sortOrder = action.payload;
-      const todosArray = Object.values(state.listData);
-      todosArray.map((todo) => {
-        todo.sortOrder = sortOrder;
-      })
+    changeSort: (state, action) => {
+      const { sortBy, sortOrder } = action.payload;
+      state.data.optionData.sortBy = sortBy;
+      state.data.optionData.sortOrder = sortOrder;
     },
 
     clearAllTodos: (state) => {
-      state.listData = {}
+      state.data.ListData = {}
     }
   },
 });
 
-export const { addTodo, deleteTodo, completeTodo, editTodoAction, showEditForm, changeSortBy, changeSortOrder, clearAllTodos } = todosReducer.actions;
+export const { addTodo, deleteTodo, completeTodo, editTodoAction, showEditForm, changeSort, clearAllTodos } = todosReducer.actions;
 export default todosReducer.reducer;
