@@ -41,7 +41,7 @@ const TodoItem = ({ todo }) => {
     }
 
     return (
-        <li key={todo.id} className="pt-3 pr-3 pb-3 pl-3 flex justify-between items-center transition duration-300 ease-in-out even:bg-gray-100 md:even:bg-none md:hover:bg-gray-100">
+        <li key={todo.id} className="pt-3 pr-3 pb-3 pl-3 flex justify-between items-center transition duration-300 ease-in-out even:bg-gray-100 md:even:bg-transparent md:hover:bg-gray-100">
 
             <div>
                 <div className="flex items-center flex-wrap gap-x-3">
