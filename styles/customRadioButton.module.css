@@ -32,7 +32,7 @@
 .customPriorityRadioButton:checked + .customRadioButtonIcon {
     border-color: rgb(0, 0, 0);
     background-color: transparent;
-    background-image: url(../public/circle.svg);
+    background-image: url('/circle.svg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
