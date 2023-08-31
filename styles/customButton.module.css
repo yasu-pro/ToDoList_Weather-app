@@ -64,15 +64,3 @@
     border-bottom-right-radius: 0.375rem;
 }
 
-.customClearAllButton {
-    width: 100%;
-    color: rgb(220 38 38 );
-    background-color: rgb(254 226 226);
-    border-color: rgb(239 68 68 );
-}
-
-.customClearAllButton:hover {
-    color: rgb(254 226 226);
-    background-color: rgb(239 68 68 );
-    border-color: rgb(220 38 38 );
-}

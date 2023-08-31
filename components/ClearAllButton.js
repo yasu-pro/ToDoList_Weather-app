@@ -1,11 +1,31 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from "@mui/material";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import { clearAllTodos } from "../redux/todosReducer";
-import customButtonStyles from "../styles/customButton.module.css";
 
 const ClearAllButton = () => {
     const dispatch = useDispatch();
+
+    // カスタムテーマの定義
+    const theme = createTheme({
+        components: {
+            MuiButton: {
+                styleOverrides: {
+                    outlinedPrimary: {
+                        width: "100%",
+                        color: "rgb(220 38 38 )",
+                        backgroundColor: "rgb(254 226 226)",
+                        borderColor: "rgb(239 68 68 )",
+                        '&:hover': {
+                            color: "rgb(254 226 226)",
+                            backgroundColor: "rgb(239 68 68 )",
+                            borderColor: "rgb(220 38 38 )",
+                        }
+                    },
+                },
+            },
+        },
+    });
 
     const handleClearAll = () => {
         if (window.confirm("タスクを全て削除します。一度削除すると元に戻せません。")) {
@@ -14,15 +34,16 @@ const ClearAllButton = () => {
     }
 
     return (
-        <Button
-            variant="outlined"
-            color="primary"
-            onClick={handleClearAll}
-            sx={{ marginRight: "0.5rem" }}
-            className={customButtonStyles.customClearAllButton}
-            data-testid="clear-all-button"
-        >全削除
-        </Button>
+        <ThemeProvider theme={theme}>
+            <Button
+                variant="outlined"
+                color="primary"
+                onClick={handleClearAll}
+                sx={{ marginRight: "0.5rem" }}
+                data-testid="clear-all-button"
+            >全削除
+            </Button>
+        </ThemeProvider>
     )
 }
 
