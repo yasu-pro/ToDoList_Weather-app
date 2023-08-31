@@ -4,7 +4,7 @@ React と Redux の勉強のために作成したアプリ。
 
 # URL
 
-![URL](https://to-do-list-steel-two.vercel.app/)
+[TodoListアプリ](https://to-do-list-steel-two.vercel.app/)
 
 # DEMO
 
