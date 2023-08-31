@@ -4,7 +4,7 @@ React と Redux の勉強のために作成したアプリ。
 
 # DEMO
 
-[https://github.com/yasu-pro/ToDoList/assets/61544788/2c094c2e-c16e-4d46-953c-fa72a2d76ac6]
+![image](https://github.com/yasu-pro/ToDoList/assets/61544788/2c094c2e-c16e-4d46-953c-fa72a2d76ac6)
 
 # Features
 
