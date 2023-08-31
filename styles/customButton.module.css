@@ -48,7 +48,7 @@
     font-size: 0.875rem;
     line-height: 1.5rem;
     appearance: none;
-    background-image: url('../public/chevron-down.svg');
+    background-image: url('/chevron-down.svg');
     background-position: right 0.5rem center;
     background-repeat: no-repeat;
     background-size: 1.5em 1.5em;
