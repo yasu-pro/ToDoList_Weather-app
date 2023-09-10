@@ -2,24 +2,33 @@
 
 React と Redux の勉強のために作成したアプリ。
 
-# URL
+## URL
 
-[TodoListアプリ](https://to-do-list-steel-two.vercel.app/)
+[TodoList アプリ](https://to-do-list-steel-two.vercel.app/)
 
-# DEMO
+## DEMO
 
 ![image](https://github.com/yasu-pro/ToDoList/assets/61544788/2c094c2e-c16e-4d46-953c-fa72a2d76ac6)
 
-# Features
+## Features
 
-"TodoList"として、ソート機能、タスク状況が確認できるツールを作成した。
+- React,Redux の知識を深めるために作成。
+- "TodoList"として、ソート機能、タスク状況が確認できるツールを作成した。
 
-# Requirement
+## Technologies and Libraries Used
+
+- React
+- Redux Toolkit
+- Next.js
+- Material-UI
+- tailwindcss
+
+## Requirement
 
 - node 20.5.0
 - npm 9.8.1
 
-# Usage
+## Usage
 
 ```zsh
 git clone git@github.com:yasu-pro/ToDoList.git
