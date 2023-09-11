@@ -1,6 +1,6 @@
 import { parse } from "date-fns"
 
-const SortOptions = ({ allTodoData }) => {
+const SortOptions = ( allTodoData ) => {
 
     const listData = allTodoData.ListData ? Object.values(allTodoData.ListData) : [];
 

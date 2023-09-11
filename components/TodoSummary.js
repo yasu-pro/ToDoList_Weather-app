@@ -3,7 +3,7 @@ import customBoxStyles from '../styles/customBox.module.css';
 import customSummaryStyles from '../styles/customSummary.module.css';
 import SortOptions from '../components/SortOptions';
 
-const TodoSummary = ( allTodoData ) => {
+const TodoSummary = ({ allTodoData }) => {
     const sortedListData = SortOptions(allTodoData);
 
     const totalTodo = sortedListData.length > 0 ? sortedListData.length : 0;
@@ -18,7 +18,7 @@ const TodoSummary = ( allTodoData ) => {
     }
 
     return(
-        <div className={`${customBoxStyles.customBox} pt-5 pr-5 pb-5 pl-5 hidden md:block`}>
+        <div className={`${customBoxStyles.customBox} pt-5 pr-5 pb-5 pl-5 mt-0 md:mt-7 hidden md:block`}>
             <p className="text-lg font-semibold">タスクの状況</p>
             <div className="mt-3 border-t-2 border-rgb-243-244-246">
                 <table className={customSummaryStyles.customTable}>

@@ -34,16 +34,18 @@ const ClearAllButton = () => {
     }
 
     return (
-        <ThemeProvider theme={theme}>
-            <Button
-                variant="outlined"
-                color="primary"
-                onClick={handleClearAll}
-                sx={{ marginRight: "0.5rem" }}
-                data-testid="clear-all-button"
-            >全削除
-            </Button>
-        </ThemeProvider>
+        <div className="mt-5">
+            <ThemeProvider theme={theme}>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleClearAll}
+                    sx={{ marginRight: "0.5rem" }}
+                    data-testid="clear-all-button"
+                >全削除
+                </Button>
+            </ThemeProvider>
+        </div>
     )
 }
 
