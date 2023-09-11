@@ -3,7 +3,7 @@ import customBoxStyles from '../styles/customBox.module.css';
 import customSummaryStyles from '../styles/customSummary.module.css';
 import SortOptions from '../components/SortOptions';
 
-const TodoSummary = ( allTodoData ) => {
+const TodoSummary = ({ allTodoData }) => {
     const sortedListData = SortOptions(allTodoData);
 
     const totalTodo = sortedListData.length > 0 ? sortedListData.length : 0;
