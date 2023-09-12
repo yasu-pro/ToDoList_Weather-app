@@ -14,15 +14,15 @@ const SortButtonGroup = () => {
     };
 
     const handleSortOrderChange = (event) => {
-        const targetSortOrder = event.target.value;
-        setSortOrder(targetSortOrder);
-        handleSortChange(sortBy, targetSortOrder);
+        const changedSortOrder = event.target.value;
+        setSortOrder(changedSortOrder);
+        handleSortChange(sortBy, changedSortOrder);
     };
 
     const handleChangeSortBy = (event) => {
-        const newSortBy = event.target.value;
-        setSortBy(newSortBy);
-        handleSortChange(newSortBy, sortOrder);
+        const changedSortBy = event.target.value;
+        setSortBy(changedSortBy);
+        handleSortChange(changedSortBy, sortOrder);
     };
 
     return (
