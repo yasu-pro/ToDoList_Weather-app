@@ -1,5 +1,5 @@
 import React from "react";
-import SortOptions from '../components/SortOptions';
+import SortOptions from '../utils/SortOptions';
 import TodoItem from "./TodoItem";
 
 const TodoList = ({ allTodoData }) => {
