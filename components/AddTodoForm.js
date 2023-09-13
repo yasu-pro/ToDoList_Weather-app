@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import {format} from "date-fns"
@@ -10,10 +9,10 @@ import customButtonStyles from "../styles/customButton.module.css";
 import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 
 const AddTodoForm = () => {
+    const dispatch = useDispatch();
     const [inputValue, setInputValue ] = useState('');
     const [dueDate, setDueDate] = useState(new Date());
     const [priority, setPriority] = useState("3");
-    const dispatch = useDispatch();
 
     const createId = () => {
         return Math.random().toString(36).substring(2, 9)
@@ -60,16 +59,18 @@ const AddTodoForm = () => {
         setPriority(event.target.value)
     }
 
+    const isFormValid = inputValue !== "";
+
     return (
         <section className={`${customBoxStyles.customBox} flex flex-col justify-between order-2 md:order-1`}>
-            <div className="pt-4 pr-3 pb-4 pl-3 md:pt-5 md:pr-5 md:pb-5 md:pl-5">
+            <div className="pt-4 pb-4 pl-3 pr-3 md:pt-5 md:pr-5 md:pb-5 md:pl-5">
                 <p className="text-lg font-semibold">新規タスク</p>
 
-                <div className="pr-2 pl-2 md:pr-3 md:pl-3">
+                <div className="pl-2 pr-2 md:pr-3 md:pl-3">
                     <div className="pt-3">
                         <p className="flex">
                             内容
-                            <span className="mr-1 ml-1 pt-1 pr-1 pb-1 pl-1 text-xs text-red-600 border border-red-500 rounded-sm">
+                            <span className="pt-1 pb-1 pl-1 pr-1 ml-1 mr-1 text-xs text-red-600 border border-red-500 rounded-sm">
                             必須
                             </span>
                             :
@@ -80,9 +81,9 @@ const AddTodoForm = () => {
 
                     <div className="pt-3">
                         <p>優先度 : </p>
-                        <div className="pt-1 w-36 flex items-center justify-between">
+                        <div className="flex items-center justify-between pt-1 w-36">
                             <div>
-                                <label className="ml-1 flex items-center" htmlFor="low">
+                                <label className="flex items-center ml-1" htmlFor="low">
                                     <input
                                     type="radio"
                                     id="low"
@@ -98,7 +99,7 @@ const AddTodoForm = () => {
                             </div>
 
                             <div>
-                                <label className="ml-1 flex items-center" htmlFor="medium">
+                                <label className="flex items-center ml-1" htmlFor="medium">
                                     <input
                                     type="radio"
                                     id="medium"
@@ -114,7 +115,7 @@ const AddTodoForm = () => {
                             </div>
 
                             <div>
-                                <label className="ml-1 flex items-center" htmlFor="high">
+                                <label className="flex items-center ml-1" htmlFor="high">
                                     <input
                                     type="radio"
                                     id="high"
@@ -137,7 +138,7 @@ const AddTodoForm = () => {
                 </div>
 
             </div>
-            <div className="pt-3 pr-3 pb-3 pl-3 md:pt-5 md:pr-5 md:pb-5 md:pl-5 flex justify-end border-t border-solid customGray bg-gray-100">
+            <div className="flex justify-end pt-3 pb-3 pl-3 pr-3 bg-gray-100 border-t border-solid md:pt-5 md:pr-5 md:pb-5 md:pl-5 customGray">
                 <Button
                     variant="outlined"
                     color="primary"
@@ -151,7 +152,7 @@ const AddTodoForm = () => {
                     variant="contained"
                     color="primary"
                     onClick={handleClick}
-                    disabled={inputValue === ""}
+                    disabled={!isFormValid}
                     className={`${customButtonStyles.customFormButton} ${customButtonStyles.customFormClearButton}`}
                 >
                     追加
