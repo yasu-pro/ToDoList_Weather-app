@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import {format} from "date-fns"
 import { Button } from "@mui/material";
+import { v4 as uuidv4 } from 'uuid';
 import { addTodo } from "../redux/todosReducer";
 import ReactDatePicker from "./DatePicker";
 import customBoxStyles from "../styles/customBox.module.css";
@@ -15,7 +16,7 @@ const AddTodoForm = () => {
     const [priority, setPriority] = useState("3");
 
     const createId = () => {
-        return Math.random().toString(36).substring(2, 9)
+        return uuidv4();
     }
 
     const handleClick = () => {
