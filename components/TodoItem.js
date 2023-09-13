@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
-import ModalEditTodoForm from "./ModalEditTodoForm"
 import { parse } from "date-fns"
 import { Popover } from '@headlessui/react';
+import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
+import ModalEditTodoForm from "./ModalEditTodoForm"
 import customButtonStyles from "../styles/customButton.module.css";
 import customPopoverStyles from "../styles/customPopover.module.css";
 
@@ -15,7 +15,7 @@ const TodoItem = ({ todo }) => {
     }
 
     const handleComplete = (id) => {
-        const isComplete = todo.completed ? false : true;
+        const isComplete = !todo.completed;
         dispatch(completeTodo({id, isComplete}))
     }
 
@@ -41,20 +41,20 @@ const TodoItem = ({ todo }) => {
     }
 
     return (
-        <li key={todo.id} className="pt-3 pr-3 pb-3 pl-3 flex justify-between items-center transition duration-300 ease-in-out even:bg-gray-100 md:even:bg-transparent md:hover:bg-gray-100">
+        <li key={todo.id} className="flex items-center justify-between pt-3 pb-3 pl-3 pr-3 transition duration-300 ease-in-out even:bg-gray-100 md:even:bg-transparent md:hover:bg-gray-100">
 
             <div>
-                <div className="flex items-center flex-wrap gap-x-3">
+                <div className="flex flex-wrap items-center gap-x-3">
                     <span>
                         {
                             (()=>{
                                 switch (todo.priority) {
                                     case "3":
-                                        return <svg className="w-1 h-1 block align-middle fill-green-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;
+                                        return <svg className="block w-1 h-1 align-middle fill-green-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;
                                     case "2":
-                                        return <svg className="w-1 h-1 block align-middle fill-yellow-300" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
+                                        return <svg className="block w-1 h-1 align-middle fill-yellow-300" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
                                     case "1":
-                                        return <svg className="w-1 h-1 block align-middle fill-red-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
+                                        return <svg className="block w-1 h-1 align-middle fill-red-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
                                     default:
                                         return "";
                                 }
@@ -62,7 +62,7 @@ const TodoItem = ({ todo }) => {
                         }
                     </span>
 
-                    <p className="w-40 truncate overflow-hidden text-sm leading-6 font-semibold">{todo.text}</p>
+                    <p className="w-40 overflow-hidden text-sm font-semibold leading-6 truncate">{todo.text}</p>
 
                     <div className="flex">
                         <p className={`w-24 text-center text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 border-red-500" :"bg-green-100 border-green-500"}`}>
@@ -86,8 +86,8 @@ const TodoItem = ({ todo }) => {
                     </div>
                 </div>
 
-                <div className="mt-2 flex items-center">
-                    <p className="text-xs leading-6 font-semibold text-gray-500 dark:text-gray-300">期日:{todo.dueDate}</p>
+                <div className="flex items-center mt-2">
+                    <p className="text-xs font-semibold leading-6 text-gray-500 dark:text-gray-300">期日:{todo.dueDate}</p>
                 </div>
             </div>
 
@@ -101,7 +101,7 @@ const TodoItem = ({ todo }) => {
                         </svg>
                     </Popover.Button>
                     <Popover.Panel className={`absolute z-10 ${customPopoverStyles.popoverPanel}`} >
-                        <div className="bg-white shadow-md rounded-lg p-2 space-y-2">
+                        <div className="p-2 space-y-2 bg-white rounded-lg shadow-md">
                             <Popover.Button className={customPopoverStyles.commonButton} 
                                 onClick={() =>{
                                     handleComplete(todo.id);
