@@ -4,21 +4,21 @@ import { parse } from "date-fns"
 
 interface SortOptionsProps {
     ListData: Record<string, Todo> | null;
-    TodoOptions: TodoOptions;
+    optionData: TodoOptions;
 }
 
-function SortOptions({ ListData, TodoOptions }: SortOptionsProps): Todo[] {
+const SortOptions = ({ ListData, optionData }: SortOptionsProps): Todo[] => {
     const listData: Todo[] = ListData ? Object.values(ListData) : [];
 
     return listData.slice().sort((a, b) => {
-        if (TodoOptions.sortBy === "dueDate") {
-            return TodoOptions.sortOrder === "asc" ?
+        if (optionData.sortBy === "dueDate") {
+            return optionData.sortOrder === "asc" ?
                 parse(a.dueDate, "yyyy年MM月dd日", new Date()).getTime() - parse(b.dueDate, "yyyy年MM月dd日", new Date()).getTime() :
                 parse(b.dueDate, "yyyy年MM月dd日", new Date()).getTime() - parse(a.dueDate, "yyyy年MM月dd日", new Date()).getTime();
-        } else if (TodoOptions.sortBy === "priority") {
-            return TodoOptions.sortOrder === "asc" ? a.priority - b.priority : b.priority - a.priority;
+        } else if (optionData.sortBy === "priority") {
+            return optionData.sortOrder === "asc" ? a.priority - b.priority : b.priority - a.priority;
         } else {
-            return TodoOptions.sortOrder === "asc" ? a.addOrder - b.addOrder : b.addOrder - a.addOrder;
+            return optionData.sortOrder === "asc" ? a.addOrder - b.addOrder : b.addOrder - a.addOrder;
         }
     });
 }
