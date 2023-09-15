@@ -15,8 +15,8 @@ const todosReducer = createSlice({
   initialState: initialState,
   reducers: {
     addTodo: (state, action) => {
-      const id = action.payload.id;
-      state.data.ListData[id] = { ...action.payload, id};
+      const { id, ...payload } = action.payload;
+      state.data.ListData[id] = { id, ...payload };
     },
 
     deleteTodo: (state, action) => {
@@ -30,8 +30,8 @@ const todosReducer = createSlice({
     },
 
     editTodoAction: (state, action) => {
-      const id = action.payload.id;
-      state.data.ListData[id] = { ...action.payload};
+      const { id, ...payload } = action.payload;
+      state.data.ListData[id] = { id, ...payload };
     },
 
     showEditForm: (state, action) => {

@@ -10,7 +10,9 @@ Modal.setAppElement('#__next');
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <React.StrictMode>
+        <Component {...pageProps} />
+      </React.StrictMode>
     </Provider>
   );
 }
