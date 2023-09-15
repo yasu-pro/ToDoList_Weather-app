@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   data: {
-    optionData: {
+    OptionData: {
       sortBy: "addOrder",
       sortOrder: "asc",
     },
@@ -41,8 +41,8 @@ const todosReducer = createSlice({
 
     changeSort: (state, action) => {
       const { sortBy, sortOrder } = action.payload;
-      state.data.optionData.sortBy = sortBy;
-      state.data.optionData.sortOrder = sortOrder;
+      state.data.OptionData.sortBy = sortBy;
+      state.data.OptionData.sortOrder = sortOrder;
     },
 
     clearAllTodos: (state) => {
