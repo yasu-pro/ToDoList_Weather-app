@@ -1,24 +1,24 @@
 import Todo from '../types/Todo';
-import TodoOptions from '../types/TodoOptions';
+import TodoOptionData from '../types/TodoOptionData';
 import { parse } from "date-fns"
 
 interface SortOptionsProps {
     ListData: Record<string, Todo> | null;
-    optionData: TodoOptions;
+    OptionData: TodoOptionData;
 }
 
-const SortOptions = ({ ListData, optionData }: SortOptionsProps): Todo[] => {
+const SortOptions = ({ ListData, OptionData }: SortOptionsProps): Todo[] => {
     const listData: Todo[] = ListData ? Object.values(ListData) : [];
 
     return listData.slice().sort((a, b) => {
-        if (optionData.sortBy === "dueDate") {
-            return optionData.sortOrder === "asc" ?
+        if (OptionData.sortBy === "dueDate") {
+            return OptionData.sortOrder === "asc" ?
                 parse(a.dueDate, "yyyy年MM月dd日", new Date()).getTime() - parse(b.dueDate, "yyyy年MM月dd日", new Date()).getTime() :
                 parse(b.dueDate, "yyyy年MM月dd日", new Date()).getTime() - parse(a.dueDate, "yyyy年MM月dd日", new Date()).getTime();
-        } else if (optionData.sortBy === "priority") {
-            return optionData.sortOrder === "asc" ? a.priority - b.priority : b.priority - a.priority;
+        } else if (OptionData.sortBy === "priority") {
+            return OptionData.sortOrder === "asc" ? a.priority - b.priority : b.priority - a.priority;
         } else {
-            return optionData.sortOrder === "asc" ? a.addOrder - b.addOrder : b.addOrder - a.addOrder;
+            return OptionData.sortOrder === "asc" ? a.addOrder - b.addOrder : b.addOrder - a.addOrder;
         }
     });
 }
