@@ -1,6 +1,6 @@
 import React from "react";
 import Todo from "../types/Todo";
-import TodoListProps from '../types/TodoListProps'
+import TodoListProps from '../types/TodoListProps';
 import SortOptions from '../utils/SortOptions';
 import TodoItem from "./TodoItem";
 
