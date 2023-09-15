@@ -1,11 +1,11 @@
 import React from "react";
 import Todo from "../types/Todo";
-import TodoListProps from '../types/TodoListProps';
+import AllTodoDataProps from '../types/AllTodoDataProps';
 import SortOptions from '../utils/SortOptions';
 import TodoItem from "./TodoItem";
 
-const TodoList:React.FC<TodoListProps> = ({ allTodoData }: TodoListProps) => {
-    const sortedListData:Todo[] = SortOptions( allTodoData );
+const TodoList: React.FC<AllTodoDataProps> = ({ allTodoData }: AllTodoDataProps) => {
+    const sortedListData:Todo[] = SortOptions({ ListData: allTodoData.ListData, OptionData: allTodoData.OptionData });
 
     return (
         <ul className="pt-3 pb-3 pl-0 pr-0 mx-auto md:pt-5 md:pr-5 md:pb-5 md:pl-5">
