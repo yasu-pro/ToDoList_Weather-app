@@ -1,6 +1,6 @@
 # TodoList アプリ
 
-React と Redux の勉強のために作成したアプリ。
+TypeScript と React , Redux の学習のために作成したアプリ。
 
 ## URL
 
@@ -12,11 +12,12 @@ React と Redux の勉強のために作成したアプリ。
 
 ## Features
 
-- React,Redux の知識を深めるために作成。
-- "TodoList"として、ソート機能、タスク状況が確認できるツールを作成した。
+- TypeScript,React,Redux の知識を深めるために作成しました。
+- "TodoList"として、期日機能、ソート機能、タスク状況が確認できるツールを作成しました。
 
 ## Technologies and Libraries Used
 
+- TypeScript
 - React
 - Redux Toolkit
 - Next.js

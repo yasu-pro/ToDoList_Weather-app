@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import TodoOptionData from '../types/TodoOptionData';
 import { changeSort } from "../redux/todosReducer";
 import styles from "../styles/customButton.module.css";
 
-const SortButtonGroup = () => {
+const SortButtonGroup: React.FC = () => {
     const dispatch = useDispatch();
 
-    const [sortOptions, setSortOptions] = useState({ sortBy: "addOrder", sortOrder: "asc" });
+    const [sortOptions, setSortOptions] = useState<TodoOptionData>({ sortBy: "addOrder", sortOrder: "asc" });
 
 
-    const handleSortChange = (newSortOptions) => {
+    const handleSortChange: (newSortOptions: TodoOptionData) => void = (newSortOptions) => {
         dispatch(changeSort(newSortOptions));
     };
 
-    const handleSortOptionChange = (event) => {
+    const handleSortOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = event.target;
 
         // Assign to a variable so that the value before the click is not entered.
-        const newSortOptions = { ...sortOptions, [name]: value };
+        const newSortOptions: TodoOptionData = { ...sortOptions, [name]: value };
         setSortOptions(newSortOptions);
 
         handleSortChange(newSortOptions);

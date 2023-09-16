@@ -3,7 +3,7 @@ import TodoOptionData from './TodoOptionData';
 
 interface AllTodoDataProps {
     allTodoData: {
-        ListData: Record<string, Todo> | null;
+        ListData: Record<string, Todo>;
         OptionData: TodoOptionData;
     }
 }

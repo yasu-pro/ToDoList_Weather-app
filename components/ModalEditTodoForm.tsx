@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
+import Todo from "../types/Todo";
 import { Button } from "@mui/material";
 import Modal from "react-modal";
 import { format, parse } from "date-fns"
@@ -8,7 +9,7 @@ import ReactDatePicker from "./DatePicker";
 import customButtonStyles from "../styles/customButton.module.css";
 import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 
-const ModalEditTodoForm = ({ todo }) => {
+const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
 
     const customStyles = {
         content: {
@@ -42,18 +43,20 @@ const ModalEditTodoForm = ({ todo }) => {
         dispatch(showEditForm({ id: todo.id, isEditFormVisible: false }));
     }
 
-    const handleTextChange = (e) => {
+    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditedTodo({ ...editedTodo, text: e.target.value });
     }
 
-    const handlePriorityChange = (e) => {
-        const newPriority = e.target.value;
+    const handlePriorityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newPriority = parseInt(event.target.value, 10);
         setEditedTodo({ ...editedTodo, priority: newPriority });
     }
 
-    const handleDueDateChange = (date) => {
-        const formattedDate = format(date, "yyyy年MM月dd日");
-        setEditedTodo({ ...editedTodo, dueDate: formattedDate });
+    const handleDueDateChange = (date: Date | null) => {
+        if (date) {
+            const formattedDate = format(date, "yyyy年MM月dd日");
+            setEditedTodo({ ...editedTodo, dueDate: formattedDate });
+        }
     }
 
     return (
@@ -86,11 +89,11 @@ const ModalEditTodoForm = ({ todo }) => {
                                         id={`low-${editedTodo.id}`}
                                         name={`editedPriority-${editedTodo.id}`}
                                         value="3"
-                                        checked={editedTodo.priority === "3"}
+                                        checked={editedTodo.priority === 3}
                                         onChange={handlePriorityChange}
                                         className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "3" ? customRadioButtonStyles.lowIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === 3 ? customRadioButtonStyles.lowIcon : ""}`}></span>
                                     低
                                 </label>
                             </div>
@@ -102,11 +105,11 @@ const ModalEditTodoForm = ({ todo }) => {
                                         id={`medium-${editedTodo.id}`}
                                         name={`editedPriority-${editedTodo.id}`}
                                         value="2"
-                                        checked={editedTodo.priority === "2"}
+                                        checked={editedTodo.priority === 2}
                                         onChange={handlePriorityChange}
                                         className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "2" ? customRadioButtonStyles.mediumIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === 2 ? customRadioButtonStyles.mediumIcon : ""}`}></span>
                                     中
                                 </label>
                             </div>
@@ -118,11 +121,11 @@ const ModalEditTodoForm = ({ todo }) => {
                                         id={`high-${editedTodo.id}`}
                                         name={`editedPriority-${editedTodo.id}`}
                                         value="1"
-                                        checked={editedTodo.priority === "1"}
+                                        checked={editedTodo.priority === 1}
                                         onChange={handlePriorityChange}
                                         className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "1" ? customRadioButtonStyles.hightIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === 1 ? customRadioButtonStyles.hightIcon : ""}`}></span>
                                     高
                                 </label>
                             </div>
@@ -131,7 +134,7 @@ const ModalEditTodoForm = ({ todo }) => {
 
                     <div className="pt-3">
                         <p>期限 : </p>
-                        <ReactDatePicker id="editedDueDate"
+                        <ReactDatePicker
                             selected={parse(editedTodo.dueDate, "yyyy年MM月dd日", new Date())}
                             onDateChange={handleDueDateChange}
                         />

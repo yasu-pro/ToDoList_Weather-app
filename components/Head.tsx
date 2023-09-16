@@ -1,9 +1,9 @@
 import React from "react";
-import Head from 'next/head';
+import Head from "next/head";
 
-const siteTitle = 'ToDoリスト';
+const siteTitle = "ToDoリスト";
 
-const CustomHead = () => (
+const CustomHead: React.FC = () => (
     <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="ToDoリスト アプリ" />

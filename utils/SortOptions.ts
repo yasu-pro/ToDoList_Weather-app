@@ -3,7 +3,7 @@ import TodoOptionData from '../types/TodoOptionData';
 import { parse } from "date-fns"
 
 interface SortOptionsProps {
-    ListData: Record<string, Todo> | null;
+    ListData: Record<string, Todo>;
     OptionData: TodoOptionData;
 }
 
