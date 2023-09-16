@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 // Component Section
 import AddTodoForm from "../components/AddTodoForm"
 import ClearAllButton from "../components/ClearAllButton";
@@ -9,7 +10,7 @@ import TodoList from "../components/TodoList";
 import TodoSummary from "../components/TodoSummary";
 
 export default function Home() {
-    const allTodoData = useSelector(( store ) => store.todos.data);
+    const allTodoData = useSelector(( store: RootState ) => store.todos.allTodoData);
 
     return (
         <Layout>
