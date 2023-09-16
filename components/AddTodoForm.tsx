@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
+import Todo from "../types/Todo";
 import {format} from "date-fns"
 import { Button } from "@mui/material";
 import { v4 as uuidv4 } from 'uuid';
@@ -9,33 +10,31 @@ import customBoxStyles from "../styles/customBox.module.css";
 import customButtonStyles from "../styles/customButton.module.css";
 import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 
-const AddTodoForm = () => {
+const AddTodoForm: React.FC = () => {
     const dispatch = useDispatch();
-    const [inputValue, setInputValue ] = useState('');
-    const [dueDate, setDueDate] = useState(new Date());
-    const [priority, setPriority] = useState("3");
+    const [inputValue, setInputValue ] = useState<string>('');
+    const [dueDate, setDueDate] = useState<Date>(new Date());
+    const [priority, setPriority] = useState<string>("3");
 
-    const createId = () => {
+    const createId = (): string => {
         return uuidv4();
     }
 
     const handleClick = () => {
-        const id = createId();
-        const now = Date.now();
+        const id: string = createId();
+        const now: number = Date.now();
 
-        dispatch(
-            addTodo(
-                {
-                    id: String(id),
-                    isEditFormVisible: false,
-                    text: inputValue,
-                    completed: false,
-                    dueDate: format(dueDate, "yyyy年MM月dd日"),
-                    priority: priority,
-                    addOrder: now
-                }
-            )
-        )
+        const newTodo: Todo = {
+            id: String(id),
+            isEditFormVisible: false,
+            text: inputValue,
+            completed: false,
+            dueDate: format(dueDate, "yyyy年MM月dd日"),
+            priority: priority,
+            addOrder: now
+        };
+
+        dispatch(addTodo(newTodo));
 
         setInputValue("");
         setDueDate(new Date());
@@ -48,15 +47,17 @@ const AddTodoForm = () => {
         setPriority("3");
     }
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     }
 
-    const handleDatePickerChange = (date) => {
-        setDueDate(date);
+    const handleDatePickerChange = (date: Date | null) => {
+        if (date) {
+            setDueDate(date);
+        }
     }
 
-    const handlePriorityChange = (event) => {
+    const handlePriorityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPriority(event.target.value)
     }
 
