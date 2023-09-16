@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button, createTheme, ThemeProvider } from "@mui/material";
 import { clearAllTodos } from "../redux/todosReducer";
 
-const ClearAllButton = () => {
+const ClearAllButton: React.FC = () => {
     const dispatch = useDispatch();
 
     // カスタムテーマの定義
