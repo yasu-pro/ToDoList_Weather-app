@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
+import Todo from "../types/Todo";
 import { Button } from "@mui/material";
 import Modal from "react-modal";
 import { format, parse } from "date-fns"
@@ -8,7 +9,7 @@ import ReactDatePicker from "./DatePicker";
 import customButtonStyles from "../styles/customButton.module.css";
 import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 
-const ModalEditTodoForm = ({ todo }) => {
+const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
 
     const customStyles = {
         content: {
@@ -42,18 +43,20 @@ const ModalEditTodoForm = ({ todo }) => {
         dispatch(showEditForm({ id: todo.id, isEditFormVisible: false }));
     }
 
-    const handleTextChange = (e) => {
+    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditedTodo({ ...editedTodo, text: e.target.value });
     }
 
-    const handlePriorityChange = (e) => {
+    const handlePriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newPriority = e.target.value;
         setEditedTodo({ ...editedTodo, priority: newPriority });
     }
 
-    const handleDueDateChange = (date) => {
-        const formattedDate = format(date, "yyyy年MM月dd日");
-        setEditedTodo({ ...editedTodo, dueDate: formattedDate });
+    const handleDueDateChange = (date: Date | null) => {
+        if (date) {
+            const formattedDate = format(date, "yyyy年MM月dd日");
+            setEditedTodo({ ...editedTodo, dueDate: formattedDate });
+        }
     }
 
     return (
@@ -131,7 +134,7 @@ const ModalEditTodoForm = ({ todo }) => {
 
                     <div className="pt-3">
                         <p>期限 : </p>
-                        <ReactDatePicker id="editedDueDate"
+                        <ReactDatePicker
                             selected={parse(editedTodo.dueDate, "yyyy年MM月dd日", new Date())}
                             onDateChange={handleDueDateChange}
                         />
