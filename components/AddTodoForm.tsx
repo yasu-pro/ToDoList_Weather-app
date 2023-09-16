@@ -14,7 +14,7 @@ const AddTodoForm: React.FC = () => {
     const dispatch = useDispatch();
     const [inputValue, setInputValue ] = useState<string>('');
     const [dueDate, setDueDate] = useState<Date>(new Date());
-    const [priority, setPriority] = useState<string>("3");
+    const [priority, setPriority] = useState<number>(3);
 
     const createId = (): string => {
         return uuidv4();
@@ -38,13 +38,13 @@ const AddTodoForm: React.FC = () => {
 
         setInputValue("");
         setDueDate(new Date());
-        setPriority("3");
+        setPriority(3);
     }
 
     const handleClear = () => {
         setInputValue("");
         setDueDate(new Date());
-        setPriority("3");
+        setPriority(3);
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +58,8 @@ const AddTodoForm: React.FC = () => {
     }
 
     const handlePriorityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPriority(event.target.value)
+        const newPriority = parseInt(event.target.value, 10);
+        setPriority(newPriority)
     }
 
     const isFormValid = inputValue !== "";
@@ -91,11 +92,11 @@ const AddTodoForm: React.FC = () => {
                                     id="low"
                                     name="priority"
                                     value="3"
-                                    checked={priority === "3"}
+                                    checked={priority === 3}
                                     onChange={handlePriorityChange}
                                     className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === "3" ? customRadioButtonStyles.lowIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === 3 ? customRadioButtonStyles.lowIcon : ""}`}></span>
                                     低
                                 </label>
                             </div>
@@ -107,11 +108,11 @@ const AddTodoForm: React.FC = () => {
                                     id="medium"
                                     name="priority"
                                     value="2"
-                                    checked={priority === "2"}
+                                    checked={priority === 2}
                                     onChange={handlePriorityChange}
                                     className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === "2" ? customRadioButtonStyles.mediumIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === 2 ? customRadioButtonStyles.mediumIcon : ""}`}></span>
                                     中
                                 </label>
                             </div>
@@ -123,11 +124,11 @@ const AddTodoForm: React.FC = () => {
                                     id="high"
                                     name="priority"
                                     value="1"
-                                    checked={priority === "1"}
+                                    checked={priority === 1}
                                     onChange={handlePriorityChange}
                                     className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === "1" ? customRadioButtonStyles.hightIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${priority === 1 ? customRadioButtonStyles.hightIcon : ""}`}></span>
                                     高
                                 </label>
                             </div>

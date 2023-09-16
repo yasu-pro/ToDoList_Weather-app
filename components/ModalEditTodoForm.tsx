@@ -47,8 +47,8 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
         setEditedTodo({ ...editedTodo, text: e.target.value });
     }
 
-    const handlePriorityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newPriority = e.target.value;
+    const handlePriorityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newPriority = parseInt(event.target.value, 10);
         setEditedTodo({ ...editedTodo, priority: newPriority });
     }
 
@@ -89,11 +89,11 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
                                         id={`low-${editedTodo.id}`}
                                         name={`editedPriority-${editedTodo.id}`}
                                         value="3"
-                                        checked={editedTodo.priority === "3"}
+                                        checked={editedTodo.priority === 3}
                                         onChange={handlePriorityChange}
                                         className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "3" ? customRadioButtonStyles.lowIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === 3 ? customRadioButtonStyles.lowIcon : ""}`}></span>
                                     低
                                 </label>
                             </div>
@@ -105,11 +105,11 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
                                         id={`medium-${editedTodo.id}`}
                                         name={`editedPriority-${editedTodo.id}`}
                                         value="2"
-                                        checked={editedTodo.priority === "2"}
+                                        checked={editedTodo.priority === 2}
                                         onChange={handlePriorityChange}
                                         className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "2" ? customRadioButtonStyles.mediumIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === 2 ? customRadioButtonStyles.mediumIcon : ""}`}></span>
                                     中
                                 </label>
                             </div>
@@ -121,11 +121,11 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
                                         id={`high-${editedTodo.id}`}
                                         name={`editedPriority-${editedTodo.id}`}
                                         value="1"
-                                        checked={editedTodo.priority === "1"}
+                                        checked={editedTodo.priority === 1}
                                         onChange={handlePriorityChange}
                                         className={customRadioButtonStyles.customPriorityRadioButton}
                                     />
-                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === "1" ? customRadioButtonStyles.hightIcon : ""}`}></span>
+                                    <span className={`${customRadioButtonStyles.customRadioButtonIcon} ${editedTodo.priority === 1 ? customRadioButtonStyles.hightIcon : ""}`}></span>
                                     高
                                 </label>
                             </div>

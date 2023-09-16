@@ -4,7 +4,7 @@ interface Todo {
     text: string;
     completed: boolean;
     dueDate: string;
-    priority: string;
+    priority: number;
     addOrder: number;
 }
 

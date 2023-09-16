@@ -50,11 +50,11 @@ const TodoItem: React.FC<{ todo : Todo }> = ({ todo }) => {
                         {
                             (()=>{
                                 switch (todo.priority) {
-                                    case "3":
+                                    case 3:
                                         return <svg className="block w-1 h-1 align-middle fill-green-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;
-                                    case "2":
+                                    case 2:
                                         return <svg className="block w-1 h-1 align-middle fill-yellow-300" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
-                                    case "1":
+                                    case 1:
                                         return <svg className="block w-1 h-1 align-middle fill-red-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
                                     default:
                                         return "";
