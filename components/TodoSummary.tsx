@@ -1,10 +1,12 @@
 import React from "react";
+import Todo from "../types/Todo";
+import AllTodoDataProps from "../types/AllTodoDataProps";
 import customBoxStyles from '../styles/customBox.module.css';
 import customSummaryStyles from '../styles/customSummary.module.css';
 import SortOptions from '../utils/SortOptions';
 
-const TodoSummary = ({ allTodoData }) => {
-    const sortedListData = SortOptions(allTodoData);
+const TodoSummary:React.FC<AllTodoDataProps> = ({ allTodoData }: AllTodoDataProps) => {
+    const sortedListData: Todo[] = SortOptions({ ListData: allTodoData.ListData, OptionData: allTodoData.OptionData });
 
     const totalTodo = sortedListData.length > 0 ? sortedListData.length : 0;
     const uncompleted = sortedListData.length > 0 ? sortedListData.filter(todo => !todo.completed).length : 0;
