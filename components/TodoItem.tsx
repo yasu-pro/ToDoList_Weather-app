@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
+import Todo from "../types/Todo";
 import { parse } from "date-fns"
 import { Popover } from '@headlessui/react';
 import { deleteTodo, completeTodo, showEditForm} from "../redux/todosReducer";
@@ -7,25 +8,25 @@ import ModalEditTodoForm from "./ModalEditTodoForm"
 import customButtonStyles from "../styles/customButton.module.css";
 import customPopoverStyles from "../styles/customPopover.module.css";
 
-const TodoItem = ({ todo }) => {
+const TodoItem: React.FC<{ todo : Todo }> = ({ todo }) => {
     const dispatch = useDispatch();
 
-    const handleDelete = (id) => {
+    const handleDelete = (id: string) => {
         dispatch(deleteTodo(id))
     }
 
-    const handleComplete = (id) => {
+    const handleComplete = (id: string) => {
         const isComplete = !todo.completed;
         dispatch(completeTodo({id, isComplete}))
     }
 
-    const handleIsEditFormVisible = (id, isShow) => {
+    const handleIsEditFormVisible = (id: string, isShow: boolean) => {
         dispatch(showEditForm( {id, isEditFormVisible: isShow }))
     }
 
-    const calculateDaysUntilDueDate =() => {
-        const dueDate = parse(todo.dueDate, "yyyy年MM月dd日", new Date());
-        const currentDate = new Date();
+    const calculateDaysUntilDueDate = (): string | number => {
+        const dueDate = parse(todo.dueDate, "yyyy年MM月dd日", new Date()).getTime();
+        const currentDate = new Date().getTime();
         const timeDifference = dueDate - currentDate; // ミリ秒単位の差分
         const daysUntilDue = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // 日数に変換して切り上げ
 
@@ -49,11 +50,11 @@ const TodoItem = ({ todo }) => {
                         {
                             (()=>{
                                 switch (todo.priority) {
-                                    case "3":
+                                    case 3:
                                         return <svg className="block w-1 h-1 align-middle fill-green-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;
-                                    case "2":
+                                    case 2:
                                         return <svg className="block w-1 h-1 align-middle fill-yellow-300" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
-                                    case "1":
+                                    case 1:
                                         return <svg className="block w-1 h-1 align-middle fill-red-500" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3"></circle></svg>;;
                                     default:
                                         return "";
@@ -102,19 +103,19 @@ const TodoItem = ({ todo }) => {
                     </Popover.Button>
                     <Popover.Panel className={`absolute z-10 ${customPopoverStyles.popoverPanel}`} >
                         <div className="p-2 space-y-2 bg-white rounded-lg shadow-md">
-                            <Popover.Button className={customPopoverStyles.commonButton} 
+                            <Popover.Button className={customPopoverStyles.commonButton}
                                 onClick={() =>{
                                     handleComplete(todo.id);
                                     }}>
                                 {todo.completed !== true ? '完了' : '未完了'}
                             </Popover.Button>
-                            <Popover.Button className={customPopoverStyles.commonButton} 
+                            <Popover.Button className={customPopoverStyles.commonButton}
                                 onClick={() =>{
                                     handleIsEditFormVisible(todo.id, true);
                                     }}>
                                 編集
                             </Popover.Button>
-                            <Popover.Button className={customPopoverStyles.commonButton} 
+                            <Popover.Button className={customPopoverStyles.commonButton}
                                 onClick={() =>{
                                     handleDelete(todo.id);
                                     }}>
