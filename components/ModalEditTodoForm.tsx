@@ -47,7 +47,7 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
         setEditedTodo({ ...editedTodo, text: e.target.value });
     }
 
-    const handlePriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handlePriorityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newPriority = e.target.value;
         setEditedTodo({ ...editedTodo, priority: newPriority });
     }
