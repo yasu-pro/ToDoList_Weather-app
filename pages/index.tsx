@@ -16,11 +16,8 @@ export default function Home() {
         <Layout>
             <div className="p-3 md:p-12">
                 <TodoList allTodoData={ allTodoData } />
-
                 <div className="grid gap-5 md:grid-cols-2 md:gap-10">
-
                     <AddTodoForm />
-
                     <div className="order-1 md:order-2 pt-5 border-t border-rgba-[209,213,219] md:pt-0 md:border-t-0">
                         <SortButtonGroup />
                         <ClearAllButton />
