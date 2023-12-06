@@ -43,8 +43,8 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
         dispatch(showEditForm({ id: todo.id, isEditFormVisible: false }));
     }
 
-    const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEditedTodo({ ...editedTodo, text: e.target.value });
+    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEditedTodo({ ...editedTodo, title: e.target.value });
     }
 
     const handlePriorityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,10 +73,10 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
                             </span>
                             :
                         </p>
-                        <input className={`w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100 ${editedTodo.text === "" ? "bg-red-100" : "bg-gray-100"}`}
-                            value={editedTodo.text}
-                            onChange={handleTextChange}/>
-                        {editedTodo.text === "" && <span className="text-red-600">文字を入力してください</span>}
+                        <input className={`w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100 ${editedTodo.title === "" ? "bg-red-100" : "bg-gray-100"}`}
+                            value={editedTodo.title}
+                            onChange={handleTitleChange}/>
+                        {editedTodo.title === "" && <span className="text-red-600">文字を入力してください</span>}
                     </div>
 
                     <div className="pt-3">
@@ -156,7 +156,7 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
                     variant="contained"
                     color="primary"
                     onClick={handleEditComplete}
-                    disabled={editedTodo.text === ""}
+                    disabled={editedTodo.title === ""}
                     className={`${customButtonStyles.customFormButton} ${customButtonStyles.customFormClearButton}`}
                 >
                     修正完了

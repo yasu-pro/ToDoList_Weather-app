@@ -63,7 +63,7 @@ const TodoItem: React.FC<{ todo : Todo }> = ({ todo }) => {
                         }
                     </span>
 
-                    <p className="w-40 overflow-hidden text-sm font-semibold leading-6 truncate">{todo.text}</p>
+                    <p className="w-40 overflow-hidden text-sm font-semibold leading-6 truncate">{todo.title}</p>
 
                     <div className="flex">
                         <p className={`w-24 text-center text-xs pt-1 pr-3 pb-1 pl-3 rounded-md border border-opacity-20 ${todo.completed !== true ? "bg-red-100 border-red-500" :"bg-green-100 border-green-500"}`}>

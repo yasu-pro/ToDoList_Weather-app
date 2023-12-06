@@ -12,7 +12,7 @@ import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 
 const AddTodoForm: React.FC = () => {
     const dispatch = useDispatch();
-    const [inputValue, setInputValue ] = useState<string>('');
+    const [titleValue, setTitleValue ] = useState<string>('');
     const [dueDate, setDueDate] = useState<Date>(new Date());
     const [priority, setPriority] = useState<number>(3);
 
@@ -27,7 +27,7 @@ const AddTodoForm: React.FC = () => {
         const newTodo: Todo = {
             id: String(id),
             isEditFormVisible: false,
-            text: inputValue,
+            title: titleValue,
             completed: false,
             dueDate: format(dueDate, "yyyy年MM月dd日"),
             priority: priority,
@@ -36,19 +36,19 @@ const AddTodoForm: React.FC = () => {
 
         dispatch(addTodo(newTodo));
 
-        setInputValue("");
+        setTitleValue("");
         setDueDate(new Date());
         setPriority(3);
     }
 
     const handleClear = () => {
-        setInputValue("");
+        setTitleValue("");
         setDueDate(new Date());
         setPriority(3);
     }
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.target.value);
+    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTitleValue(event.target.value);
     }
 
     const handleDatePickerChange = (date: Date | null) => {
@@ -62,7 +62,7 @@ const AddTodoForm: React.FC = () => {
         setPriority(newPriority)
     }
 
-    const isFormValid = inputValue !== "";
+    const isFormValid = titleValue !== "";
 
     return (
         <section className={`${customBoxStyles.customBox} flex flex-col justify-between order-2 md:order-1`}>
@@ -78,8 +78,8 @@ const AddTodoForm: React.FC = () => {
                             </span>
                             :
                         </p>
-                        <input className={`w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 ${inputValue === "" ? "bg-red-100" : "bg-gray-100"}`} type="text" onChange={handleChange} value={inputValue}/>
-                        {inputValue === "" && <span className="text-red-600">文字を入力してください</span>}
+                        <input className={`w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 ${titleValue === "" ? "bg-red-100" : "bg-gray-100"}`} type="text" onChange={handleTitleChange} value={titleValue}/>
+                        {titleValue === "" && <span className="text-red-600">文字を入力してください</span>}
                     </div>
 
                     <div className="pt-3">
