@@ -13,6 +13,7 @@ import customRadioButtonStyles from '../styles/customRadioButton.module.css';
 const AddTodoForm: React.FC = () => {
     const dispatch = useDispatch();
     const [titleValue, setTitleValue ] = useState<string>('');
+    const [contentsValue, setContentsValue] = useState<string>('');
     const [dueDate, setDueDate] = useState<Date>(new Date());
     const [priority, setPriority] = useState<number>(3);
 
@@ -28,6 +29,7 @@ const AddTodoForm: React.FC = () => {
             id: String(id),
             isEditFormVisible: false,
             title: titleValue,
+            contents: contentsValue,
             completed: false,
             dueDate: format(dueDate, "yyyy年MM月dd日"),
             priority: priority,
@@ -37,12 +39,14 @@ const AddTodoForm: React.FC = () => {
         dispatch(addTodo(newTodo));
 
         setTitleValue("");
+        setContentsValue("");
         setDueDate(new Date());
         setPriority(3);
     }
 
     const handleClear = () => {
         setTitleValue("");
+        setContentsValue("");
         setDueDate(new Date());
         setPriority(3);
     }
@@ -50,6 +54,10 @@ const AddTodoForm: React.FC = () => {
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitleValue(event.target.value);
     }
+
+    const handleContentsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setContentsValue(event.target.value);
+    };
 
     const handleDatePickerChange = (date: Date | null) => {
         if (date) {
@@ -72,7 +80,7 @@ const AddTodoForm: React.FC = () => {
                 <div className="pl-2 pr-2 md:pr-3 md:pl-3">
                     <div className="pt-3">
                         <p className="flex">
-                            内容
+                            タイトル
                             <span className="pt-1 pb-1 pl-1 pr-1 ml-1 mr-1 text-xs text-red-600 border border-red-500 rounded-sm">
                             必須
                             </span>
@@ -80,6 +88,15 @@ const AddTodoForm: React.FC = () => {
                         </p>
                         <input className={`w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 ${titleValue === "" ? "bg-red-100" : "bg-gray-100"}`} type="text" onChange={handleTitleChange} value={titleValue}/>
                         {titleValue === "" && <span className="text-red-600">文字を入力してください</span>}
+                    </div>
+
+                    <div className="pt-3">
+                        <p>内容 : </p>
+                        <textarea
+                            className={"w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100"}
+                            onChange={handleContentsChange}
+                            value={contentsValue}
+                        />
                     </div>
 
                     <div className="pt-3">

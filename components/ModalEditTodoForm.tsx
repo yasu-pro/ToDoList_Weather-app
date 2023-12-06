@@ -43,9 +43,13 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
         dispatch(showEditForm({ id: todo.id, isEditFormVisible: false }));
     }
 
-    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEditedTodo({ ...editedTodo, title: e.target.value });
+    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEditedTodo({ ...editedTodo, title: event.target.value });
     }
+
+    const handleContentsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setEditedTodo({ ...editedTodo, contents: event.target.value });
+    };
 
     const handlePriorityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newPriority = parseInt(event.target.value, 10);
@@ -67,7 +71,7 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
                 <div className="pl-3 pr-3">
                     <div className="pt-3">
                         <p className="flex">
-                            内容
+                            タイトル
                             <span className="pt-1 pb-1 pl-1 pr-1 ml-1 mr-1 text-xs text-red-600 border border-red-500 rounded-sm">
                             必須
                             </span>
@@ -77,6 +81,15 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
                             value={editedTodo.title}
                             onChange={handleTitleChange}/>
                         {editedTodo.title === "" && <span className="text-red-600">文字を入力してください</span>}
+                    </div>
+
+                    <div className="pt-3">
+                        <p>内容 : </p>
+                        <textarea
+                            className={`w-full pt-1.5 pb-1.5 pr-4 pl-4 text-lg mt-1.5 bg-gray-100 ${editedTodo.title === "" ? "bg-red-100" : "bg-gray-100"}`}
+                            value={editedTodo.contents}
+                            onChange={handleContentsChange}
+                        />
                     </div>
 
                     <div className="pt-3">
