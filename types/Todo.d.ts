@@ -1,7 +1,8 @@
 interface Todo {
     id: string;
     isEditFormVisible: boolean;
-    text: string;
+    title: string;
+    contents: string;
     completed: boolean;
     dueDate: string;
     priority: number;
