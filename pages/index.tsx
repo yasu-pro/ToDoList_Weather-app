@@ -8,6 +8,7 @@ import Layout from "../components/layout";
 import SortButtonGroup from "../components/SortButtonGroup";
 import TodoList from "../components/TodoList";
 import TodoSummary from "../components/TodoSummary";
+import BottomNavigationBar from "../components/BottomNavBar";
 
 export default function Home() {
     const allTodoData = useSelector(( store: RootState ) => store.todos.allTodoData);
@@ -25,6 +26,8 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
+            <BottomNavigationBar />
         </Layout>
     )
 }

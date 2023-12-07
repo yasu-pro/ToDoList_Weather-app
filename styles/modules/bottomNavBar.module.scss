@@ -1,0 +1,25 @@
+.bottomNavBar {
+    position: fixed;
+    bottom: 0;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    background-color: rgb(243 244 246);
+    width: 100%;
+    padding: 6px 10px;
+
+    a {
+        display: grid;
+        grid-template-rows: 1fr;
+        place-items: center;
+        padding: 10px;
+        .customIcon {
+            font-size: 24px;
+        }
+        span {
+            margin-top: 3px;
+            font-size: 8px;
+        }
+    }
+}
