@@ -9,12 +9,15 @@ import SortButtonGroup from "../components/SortButtonGroup";
 import TodoList from "../components/TodoList";
 import TodoSummary from "../components/TodoSummary";
 import BottomNavigationBar from "../components/BottomNavBar";
+import BurgerMenu from "../components/BurgerMenu";
 
 export default function Home() {
     const allTodoData = useSelector(( store: RootState ) => store.todos.allTodoData);
 
     return (
         <Layout>
+            <BurgerMenu />
+
             <div className="p-3 md:p-12">
                 <TodoList allTodoData={ allTodoData } />
                 <div className="grid gap-5 md:grid-cols-2 md:gap-10">
