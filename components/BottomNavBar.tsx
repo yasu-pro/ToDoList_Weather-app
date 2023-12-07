@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSun, faTableList, faGear } from '@fortawesome/free-solid-svg-icons';
 import Styles from "../styles/modules/bottomNavBar.module.scss";
 
-const BottomNavBar = () => {
+const BottomNavBar: React.FC = () => {
     const [isMobileScreen, setIsMobileScreen] = useState(false);
 
     useEffect(() => {
