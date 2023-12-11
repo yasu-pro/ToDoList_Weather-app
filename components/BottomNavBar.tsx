@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSun, faTableList, faGear } from '@fortawesome/free-solid-svg-icons';
 import Styles from "../styles/modules/bottomNavBar.module.scss";
@@ -16,18 +17,18 @@ const BottomNavBar: React.FC = () => {
     if (isMobileScreen) {
         return (
             <div className={Styles.bottomNavBar}>
-                <a href="/weather">
+                <Link href={`/weather`} passHref>
                     <FontAwesomeIcon className={Styles.customIcon} icon={faCloudSun} />
                     <span>Weather</span>
-                </a>
-                <a href="./">
+                </Link>
+                <Link href="/" passHref>
                     <FontAwesomeIcon className={Styles.customIcon} icon={faTableList} />
                     <span>TodoList</span>
-                </a>
-                <a href="/settings">
+                </Link>
+                <Link href="/settings" passHref>
                     <FontAwesomeIcon className={Styles.customIcon} icon={faGear} />
                     <span>Setting</span>
-                </a>
+                </Link>
             </div>
         );
     }
