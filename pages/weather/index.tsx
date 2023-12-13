@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import axios from 'axios';
+import Layout from "../../components/layout";
 import WeatherInfo from '../../components/WeatherInfo';
+import { WeatherData } from "../../types/weather/weatherTypes";
 
 const WeatherLocationPage: React.FC = () => {
-    const [weatherData, setWeatherData] = useState(null);
+    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
     useEffect(() => {
         const fetchWeatherData = async () => {
@@ -14,6 +15,7 @@ const WeatherLocationPage: React.FC = () => {
 
                 // 位置情報を含めてサーバーサイドに送信
                 const response = await axios.get(`/api/weather?lat=${position.lat}&lon=${position.lon}`);
+
                 setWeatherData(response.data);
             } catch (error) {
                 console.error('Error fetching weather data:', error);
@@ -42,9 +44,13 @@ const WeatherLocationPage: React.FC = () => {
     };
 
     return (
-        <div>
-            <WeatherInfo data={weatherData} />
-        </div>
+        <Layout>
+            {weatherData ? (
+                    <WeatherInfo data={weatherData} />
+                ) : (
+                    <div>Loading...</div>
+                )}
+        </Layout>
     );
 };
 
