@@ -1,0 +1,27 @@
+.weathercontainer {
+	width: 100%;
+
+	.weatherTable {
+		position: relative;
+		overflow-x: auto;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	th, td {
+		border: 1px solid #dddddd;
+		text-align: center;
+		padding: 8px;
+	}
+
+	th {
+		position: sticky;
+		top: 0;
+		left: 0;
+		background-color: #f2f2f2;
+		z-index: 1;
+	}
+}
