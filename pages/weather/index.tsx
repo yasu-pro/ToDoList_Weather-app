@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Layout from "../../components/layout";
 import WeatherInfo from '../../components/WeatherInfo';
 
 const WeatherLocationPage: React.FC = () => {
@@ -42,9 +43,9 @@ const WeatherLocationPage: React.FC = () => {
     };
 
     return (
-        <div>
+        <Layout>
             <WeatherInfo data={weatherData} />
-        </div>
+        </Layout>
     );
 };
 
