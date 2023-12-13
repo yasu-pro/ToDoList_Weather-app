@@ -9,6 +9,7 @@ interface WeatherInfoProps {
 
 interface GroupedData {
     dateString: string;
+    dateObj: Date,
     time: string;
     weatherIcon: string;
     weatherDescription: string;
@@ -35,12 +36,29 @@ const windDirectionIconStyle = (deg:number) => {
     }
 }
 
+// 日付の判定
+const getDayLabel = (date: Date): string => {
+    const currentDate = new Date();
+    const targetDate = new Date(date);
+
+    if (targetDate.getDate() === currentDate.getDate()) {
+        return targetDate.getHours() < 21 ? '今日' : '明日';
+    } else if (targetDate.getDate() === currentDate.getDate() + 1) {
+        return '明日';
+    } else if (targetDate.getDate() === currentDate.getDate() + 2) {
+        return '明後日';
+    }
+
+    return '';
+};
+
 // 日時ごとにデータをグループ化するユーティリティ関数
 const groupedWeatherData = (weatherBy3Hours: ListData[]) => {
     const groupedData: GroupedData[] = [];
 
     weatherBy3Hours.forEach((data) => {
         const date = new Date(data.dt_txt);
+
         const dateString = date.toLocaleDateString('ja-JP', { weekday: 'short', hour: 'numeric' });
 
         const existingDateIndex = groupedData.findIndex((group) => group.dateString === dateString);
@@ -49,6 +67,7 @@ const groupedWeatherData = (weatherBy3Hours: ListData[]) => {
         // apiから必要なデータを新規作成
         groupedData.push({
             dateString,
+            dateObj: date,
             time: date.toLocaleTimeString('ja-JP', { hour: 'numeric' }),
             weatherIcon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
             weatherDescription: data.weather[0].description,
@@ -111,10 +130,10 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
                             <th rowSpan={2}>時刻</th>
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
+                                    {index === 0 || (index > 0 && groupedData[index - 1].dateObj.getDate() !== hourlyWeatherData.dateObj.getDate()) ? (
+                                        <td rowSpan={8}>{getDayLabel(hourlyWeatherData.dateObj)}</td>
+                                    ) : null}
                                     <td>{hourlyWeatherData.time}</td>
-                                    {/* 1日に8つのセル（24時間 / 3時間） */}
-                                    {index === groupedData.length - 34 && <td rowSpan={8}>明日</td>}
-                                    {index === groupedData.length - 26 && <td rowSpan={8}>明後日</td>}
                                 </React.Fragment>
                             ))}
                         </tr>
