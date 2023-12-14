@@ -118,10 +118,10 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
     const groupedData = groupedWeatherData(weatherByHours);
 
     return (
-        <div className={`${Styles.weathercontainer}`}>
+        <div className={`${Styles.hourlyWeathercontainer}`}>
             <h1>1時間ごとの {cityName} の天気</h1>
 
-            <div className={`${Styles.weatherTable}`}>
+            <div className={`${Styles.hourlyWeatherTable}`}>
                 <table>
                     <tbody>
                         <tr id='time'>
