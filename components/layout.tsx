@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <CustomHead />
             <BurgerMenu />
             <main>
-                <div className="pt-10 pb-3 pl-3 pr-3 md:pr-12 md:pt-20 md:pl-12 md:pb-12">{children}</div>
+                <div className="pt-10 pb-3 pl-3 pr-3 mb-20 md:pr-12 md:pt-20 md:pl-12 md:pb-12 md:mb-0">{children}</div>
             </main>
             <BottomNavigationBar />
         </>
