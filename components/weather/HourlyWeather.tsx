@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Styles from "../styles/weatherInfo.module.scss";
-import { ListData,  WeatherData } from '../types/weather/weatherTypes';
+import Styles from "../../styles/weather/hourlyWeather.module.scss";
+import { HourlyData,  WeatherData } from '../../types/weather/weatherTypes';
 
 interface WeatherInfoProps {
     data: WeatherData;
@@ -53,32 +53,29 @@ const getDayLabel = (date: Date): string => {
 };
 
 // 日時ごとにデータをグループ化するユーティリティ関数
-const groupedWeatherData = (weatherBy3Hours: ListData[]) => {
+const groupedWeatherData = (weatherByHours: HourlyData[]) => {
     const groupedData: GroupedData[] = [];
 
-    weatherBy3Hours.forEach((data) => {
-        const date = new Date(data.dt_txt);
+    weatherByHours.forEach((data) => {
+        const date = new Date(data.dt * 1000);
 
         const dateString = date.toLocaleDateString('ja-JP', { weekday: 'short', hour: 'numeric' });
+        const time = `${date.getHours()}時`;
 
-        const existingDateIndex = groupedData.findIndex((group) => group.dateString === dateString);
-
-        if (existingDateIndex === -1) {
         // apiから必要なデータを新規作成
         groupedData.push({
             dateString,
             dateObj: date,
-            time: date.toLocaleTimeString('ja-JP', { hour: 'numeric' }),
+            time,
             weatherIcon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
             weatherDescription: data.weather[0].description,
-            temp: Math.round(data.main.temp - 273.15),
+            temp: Math.round(data.temp - 273.15),
             pop: Math.round(data.pop / 10) * 100,
-            humidity: Math.round(data.main.humidity),
-            windDirectionIconStyle: windDirectionIconStyle(data.wind.deg),
-            windDirection: windDirection(data.wind.deg),
-            speed: Math.round(data.wind.speed)
+            humidity: Math.round(data.humidity),
+            windDirectionIconStyle: windDirectionIconStyle(data.wind_deg),
+            windDirection: windDirection(data.wind_deg),
+            speed: Math.round(data.wind_speed)
         });
-        }
     });
 
     return groupedData;
@@ -91,11 +88,12 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
         // 緯度経度から地名に変換
         const fetchLocation = async () => {
             try {
-                const lat = data.city.coord.lat;
-                const lon = data.city.coord.lon;
+                const lat = data.lat;
+                const lon = data.lon;
 
                 const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
                 const { city } = response.data.address;
+
 
                 setLocationName(city);
             } catch (error) {
@@ -103,7 +101,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
             }
         };
 
-        if (data && data.city) {
+        if (data) {
             fetchLocation();
         }
     }, [data]);
@@ -115,15 +113,15 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
     // locationName から特定のプロパティを取得して表示する
     const cityName = typeof locationName === 'string' ? locationName : 'Loading...';
 
-    const weatherBy3Hours: ListData[] = data.list;
+    const weatherByHours: HourlyData[] = data.hourly;
 
-    const groupedData = groupedWeatherData(weatherBy3Hours);
+    const groupedData = groupedWeatherData(weatherByHours);
 
     return (
-        <div className={`${Styles.weathercontainer}`}>
-            <h1>3時間ごとの {cityName} の天気</h1>
+        <div className={`${Styles.hourlyWeathercontainer}`}>
+            <h1>1時間ごとの {cityName} の天気</h1>
 
-            <div className={`${Styles.weatherTable}`}>
+            <div className={`${Styles.hourlyWeatherTable}`}>
                 <table>
                     <tbody>
                         <tr id='time'>
