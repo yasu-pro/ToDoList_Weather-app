@@ -13,7 +13,7 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
 
     const customStyles = {
         content: {
-            top: "35%",
+            top: "50%",
             left: "50%",
             right: "auto",
             bottom: "auto",
@@ -28,6 +28,10 @@ const ModalEditTodoForm: React.FC<{ todo: Todo }> = ({ todo }) => {
             border:"1px solid rgba(0, 0, 0, 0.12)",
             boxShadow: "0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)",
         },
+        overlay: {
+            height: "100%",
+            overflow: "scroll",
+        }
     };
 
     const dispatch = useDispatch();
