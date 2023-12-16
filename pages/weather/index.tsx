@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Layout from "../../components/layout";
+import WeeklyWeather from '../../components/weather/WeeklyWeather';
 import HourlyWeather from '../../components/weather/HourlyWeather';
 import { WeatherData } from "../../types/weather/weatherTypes";
 
@@ -46,7 +47,11 @@ const WeatherLocationPage: React.FC = () => {
     return (
         <Layout>
             {weatherData ? (
+                <>
                     <HourlyWeather data={weatherData} />
+                    <div className='mt-20'></div>
+                    <WeeklyWeather data={weatherData} />
+                </>
                 ) : (
                     <div>Loading...</div>
                 )}
