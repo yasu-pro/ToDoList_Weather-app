@@ -42,7 +42,7 @@ const getDayLabel = (date: Date): string => {
     const targetDate = new Date(date);
 
     if (targetDate.getDate() === currentDate.getDate()) {
-        return targetDate.getHours() < 21 ? '今日' : '明日';
+        return targetDate.getHours() < 24 ? '今日' : '明日';
     } else if (targetDate.getDate() === currentDate.getDate() + 1) {
         return '明日';
     } else if (targetDate.getDate() === currentDate.getDate() + 2) {
