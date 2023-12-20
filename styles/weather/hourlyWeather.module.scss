@@ -8,7 +8,9 @@
 
 	table {
 		width: 100%;
-		border-collapse: collapse;
+		table-layout: fixed;
+		border-spacing:0;
+		border-collapse:separate;
 	}
 
 	th, td {
@@ -21,7 +23,21 @@
 		position: sticky;
 		top: 0;
 		left: 0;
+		background-color: #fff;
+		z-index: 9;
+		border: 1px solid #dddddd;
+		width: 50px;
+	}
+
+	td {
+		width: 70px;
+	}
+
+	td.dateObj {
+		position: sticky;
+		top: 0;
+		left: 50px;
 		background-color: #f2f2f2;
-		z-index: 1;
+		z-index: 9;
 	}
 }

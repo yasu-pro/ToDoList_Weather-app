@@ -129,7 +129,12 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
                                     {index === 0 || (index > 0 && groupedData[index - 1].dateObj.getDate() !== hourlyWeatherData.dateObj.getDate()) ? (
-                                        <td rowSpan={8}>{getDayLabel(hourlyWeatherData.dateObj)}</td>
+                                        <td
+                                            rowSpan={8}
+                                            className={`${Styles.dateObj}`}
+                                        >
+                                            {getDayLabel(hourlyWeatherData.dateObj)}
+                                        </td>
                                     ) : null}
                                     <td>{hourlyWeatherData.time}</td>
                                 </React.Fragment>
@@ -182,7 +187,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
                         <tr>
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
-                                    <td>{`${hourlyWeatherData.windDirection}℃`}</td>
+                                    <td>{`${hourlyWeatherData.windDirection}`}</td>
                                 </React.Fragment>
                             ))}
                         </tr>

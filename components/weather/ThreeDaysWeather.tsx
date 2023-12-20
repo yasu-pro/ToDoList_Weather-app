@@ -57,7 +57,7 @@ const groupedWeatherData = (weatherByToday: DailyData[]) => {
         futureDates.setDate(today.getDate() + 2);
 
         // 今日の日付を含むデータを取得する条件
-        if (date < futureDates) {
+        if (date <= futureDates) {
             const precipitationProbability = Math.round(data.pop * 100);
             const roundedPercentage = Math.round(precipitationProbability / 10) * 10;
 
