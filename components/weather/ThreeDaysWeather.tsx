@@ -1,8 +1,7 @@
-import React from 'react';
+import React from "react";
 // import ThreeDaysWeather from "./ThreeDaysWeatherParts";
 import Styles from "../../styles/weather/threeDaysWeather.module.scss";
-import { DailyData,  WeatherData } from '../../types/weather/weatherTypes';
-
+import { DailyData, WeatherData } from "../../types/weather/weatherTypes";
 
 interface WeatherInfoProps {
     data: WeatherData;
@@ -11,7 +10,7 @@ interface WeatherInfoProps {
 interface GroupedData {
     dateString: string;
     weekdayString: string;
-    dateObj: Date,
+    dateObj: Date;
     weatherIcon: string;
     weatherDescription: string;
     maxTemp: number;
@@ -33,13 +32,13 @@ const getDayLabel = (date: Date): DayLabel => {
     const isSaturday = targetDate.getDay() === 6; // 土曜日
     const isSunday = targetDate.getDay() === 0; // 日曜日
 
-    let label = '';
+    let label = "";
     if (targetDate.getDate() === currentDate.getDate()) {
-        label = targetDate.getHours() < 24 ? '今日' : '明日';
+        label = targetDate.getHours() < 24 ? "今日" : "明日";
     } else if (targetDate.getDate() === currentDate.getDate() + 1) {
-        label = '明日';
+        label = "明日";
     } else if (targetDate.getDate() === currentDate.getDate() + 2) {
-        label = '明後日';
+        label = "明後日";
     }
 
     return { label, isSaturday, isSunday };
@@ -63,8 +62,8 @@ const groupedWeatherData = (weatherByToday: DailyData[]) => {
 
             // apiから必要なデータを新規作成
             groupedData.push({
-                dateString: date.toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' }),
-                weekdayString: `(${date.toLocaleDateString('ja-JP', { weekday: 'short' })})`,
+                dateString: date.toLocaleDateString("ja-JP", { month: "numeric", day: "numeric" }),
+                weekdayString: `(${date.toLocaleDateString("ja-JP", { weekday: "short" })})`,
                 dateObj: date,
                 weatherIcon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
                 weatherDescription: data.weather[0].description,
@@ -78,8 +77,6 @@ const groupedWeatherData = (weatherByToday: DailyData[]) => {
     return groupedData;
 };
 
-
-
 const TodaysWeather: React.FC<WeatherInfoProps> = ({ data }) => {
     const weatherByHours: DailyData[] = data.daily;
 
@@ -92,14 +89,10 @@ const TodaysWeather: React.FC<WeatherInfoProps> = ({ data }) => {
                     <React.Fragment key={index}>
                         <div className={`${Styles.todaysWeatherBox}`}>
                             <div className={`${Styles.date}`}>
-                                <span className={`${Styles.date__text}`}>
-                                    {getDayLabel(dailyWeatherData.dateObj).label}
-                                </span>
+                                <span className={`${Styles.date__text}`}>{getDayLabel(dailyWeatherData.dateObj).label}</span>
                                 <span className={`${Styles.date__day}`}>
                                     {dailyWeatherData.dateString}
-                                    <span className={`${getDayLabel(dailyWeatherData.dateObj).isSaturday ? Styles.date__day_blue : ''} ${getDayLabel(dailyWeatherData.dateObj).isSunday ? Styles.date__day_red : ''}`}>
-                                        {dailyWeatherData.weekdayString}
-                                    </span>
+                                    <span className={`${getDayLabel(dailyWeatherData.dateObj).isSaturday ? Styles.date__day_blue : ""} ${getDayLabel(dailyWeatherData.dateObj).isSunday ? Styles.date__day_red : ""}`}>{dailyWeatherData.weekdayString}</span>
                                 </span>
                             </div>
                             <div className={`${Styles.weatherIcon}`}>
@@ -108,9 +101,7 @@ const TodaysWeather: React.FC<WeatherInfoProps> = ({ data }) => {
                                 </span>
                             </div>
                             <div className={`${Styles.popWeather}`}>
-                                <span className={`${Styles.popWeather__weather}`}>
-                                    {`${dailyWeatherData.weatherDescription}`}
-                                </span>
+                                <span className={`${Styles.popWeather__weather}`}>{`${dailyWeatherData.weatherDescription}`}</span>
                                 <span className={`${Styles.popWeather__pop}`}>
                                     {`${dailyWeatherData.pop}`}
                                     <span className={`${Styles.popWeather__pop_obj}`}>%</span>
@@ -131,7 +122,7 @@ const TodaysWeather: React.FC<WeatherInfoProps> = ({ data }) => {
                 ))}
             </div>
         </div>
-    )
+    );
 };
 
 export default TodaysWeather;
