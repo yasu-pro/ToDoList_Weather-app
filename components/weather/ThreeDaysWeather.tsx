@@ -2,6 +2,7 @@ import React from "react";
 // import ThreeDaysWeather from "./ThreeDaysWeatherParts";
 import Styles from "../../styles/weather/threeDaysWeather.module.scss";
 import { DailyData, WeatherData } from "../../types/weather/weatherTypes";
+import getDayLabel from "./DayLabel";
 
 interface WeatherInfoProps {
     data: WeatherData;
@@ -17,32 +18,6 @@ interface GroupedData {
     minTemp: number;
     pop: number;
 }
-
-interface DayLabel {
-    label: string;
-    isSaturday: boolean;
-    isSunday: boolean;
-}
-
-// 日付の判定
-const getDayLabel = (date: Date): DayLabel => {
-    const currentDate = new Date();
-    const targetDate = new Date(date);
-
-    const isSaturday = targetDate.getDay() === 6; // 土曜日
-    const isSunday = targetDate.getDay() === 0; // 日曜日
-
-    let label = "";
-    if (targetDate.getDate() === currentDate.getDate()) {
-        label = targetDate.getHours() < 24 ? "今日" : "明日";
-    } else if (targetDate.getDate() === currentDate.getDate() + 1) {
-        label = "明日";
-    } else if (targetDate.getDate() === currentDate.getDate() + 2) {
-        label = "明後日";
-    }
-
-    return { label, isSaturday, isSunday };
-};
 
 const groupedWeatherData = (weatherByToday: DailyData[]) => {
     const groupedData: GroupedData[] = [];
