@@ -1,5 +1,5 @@
 .weekelyWeatherContainer {
-	width: 100%;
+    width: 100%;
     table {
         width: 100%;
         border-collapse: collapse;
@@ -9,7 +9,8 @@
         border: 1px solid #dddddd;
     }
 
-    th, td {
+    th,
+    td {
         text-align: center;
         padding: 6px;
         width: 50px;
@@ -32,10 +33,21 @@
         span {
             width: 45px;
             height: 45px;
-                img {
-                    max-width: 100%;
-                    height: auto;
-                }
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    .date {
+        &__day {
+            &_red {
+                color: rgb(255, 0, 0);
+            }
+            &_blue {
+                color: rgb(0, 0, 255);
+            }
         }
     }
 }
