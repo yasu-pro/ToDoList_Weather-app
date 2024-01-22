@@ -56,7 +56,7 @@ const WeeklyWeather: React.FC<WeatherInfoProps> = ({ data }) => {
 
     return (
         <div className={`${Styles.weekelyWeatherContainer}`}>
-            <h1>週間天気</h1>
+            <h2>週間天気</h2>
             <table>
                 <tbody>
                     {groupedData.map((dailyWeatherData, index) => (
