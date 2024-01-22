@@ -1,88 +1,91 @@
 .todaysWeatherContainer {
-	width: 100%;
+    width: 100%;
 
-	.todaysWeatherInner {
-		display: flex;
-		justify-content: center;
-	}
+    .todaysWeatherInner {
+        display: flex;
+        justify-content: center;
+    }
 
-	.todaysWeatherBox {
-		display: grid;
-		align-items: center;
-		justify-content: center;
-		width: 200px;
-	}
+    .CityName {
+        font-size: 22px;
+    }
 
-	.date,
-	.weatherIcon,
-	.popWeather,
-	.temp {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+    .todaysWeatherBox {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+    }
 
+    .date,
+    .weatherIcon,
+    .popWeather,
+    .temp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-	.date {
-		display: flex;
-		flex-direction: column;
-		@media (min-width: 768px) {
-			flex-direction: row;
-		}
-		&__text {
-			font-size: 16px;
-			font-weight: bold;
-			margin-right: 5px;
-		}
-		&__day {
-			font-size: 16px;
-			&_red {
-				color: rgb(255, 0, 0);
-			}
-			&_blue {
-				color: rgb(0, 0, 255);
-			}
-		}
-	}
+    .date {
+        display: flex;
+        flex-direction: column;
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+        &__text {
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        &__day {
+            font-size: 16px;
+            &_red {
+                color: rgb(255, 0, 0);
+            }
+            &_blue {
+                color: rgb(0, 0, 255);
+            }
+        }
+    }
 
-	.weatherIcon {
-		&__Box {
-			img {
-				max-width: 100%;
-				height: auto;
-			}
-		}
-	}
+    .weatherIcon {
+        &__Box {
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
 
-	.popWeather {
-		&__weather {
-			font-size: 16px;
-			font-weight: bold;
-			margin-right: 5px;
-		}
-		&__pop {
-			font-size: 16px;
-			&_obj {
-				font-size: 12px;
-			}
-		}
-	}
+    .popWeather {
+        &__weather {
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        &__pop {
+            font-size: 16px;
+            &_obj {
+                font-size: 12px;
+            }
+        }
+    }
 
-	.temp {
-		&__max {
-			font-size: 16px;
-			margin-right: 5px;
-			color: rgb(255, 0, 0);
-		}
+    .temp {
+        &__max {
+            font-size: 16px;
+            margin-right: 5px;
+            color: rgb(255, 0, 0);
+        }
 
-		&__min {
-			font-size: 16px;
-			color: rgb(0, 0, 255);
-		}
+        &__min {
+            font-size: 16px;
+            color: rgb(0, 0, 255);
+        }
 
-		&__obj {
-			font-size: 12px;
-			color: #000;
-		}
-	}
+        &__obj {
+            font-size: 12px;
+            color: #000;
+        }
+    }
 }
