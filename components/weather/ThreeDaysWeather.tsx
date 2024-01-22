@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 // import ThreeDaysWeather from "./ThreeDaysWeatherParts";
 import Styles from "../../styles/weather/threeDaysWeather.module.scss";
 import { DailyData, WeatherData } from "../../types/weather/weatherTypes";
@@ -60,11 +61,41 @@ const groupedWeatherData = (weatherByToday: DailyData[]) => {
 
 const TodaysWeather: React.FC<WeatherInfoProps> = ({ data }) => {
     const weatherByHours: DailyData[] = data.daily;
+    const [locationName, setLocationName] = useState<string | null>(null);
 
+    useEffect(() => {
+        // 緯度経度から地名に変換
+        const fetchLocation = async () => {
+            try {
+                const lat = data.lat;
+                const lon = data.lon;
+
+                const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
+                const { city } = response.data.address;
+
+                setLocationName(city);
+            } catch (error) {
+                console.error("Error fetching location name:", error);
+            }
+        };
+
+        if (data) {
+            fetchLocation();
+        }
+    }, [data]);
+
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
+    // locationName から特定のプロパティを取得して表示する
+    const cityName = typeof locationName === "string" ? locationName : "Loading...";
     const groupedData = groupedWeatherData(weatherByHours);
 
     return (
         <div className={`${Styles.todaysWeatherContainer}`}>
+            <h1 className={`${Styles.CityName}`}></h1>
+            <h2>3日間の天気</h2>
             <div className={`${Styles.todaysWeatherInner}`}>
                 {groupedData.map((dailyWeatherData, index) => (
                     <React.Fragment key={index}>
