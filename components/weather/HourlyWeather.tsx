@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from "react";
 import Styles from "../../styles/weather/hourlyWeather.module.scss";
-import { HourlyData,  WeatherData } from '../../types/weather/weatherTypes';
+import { HourlyData, WeatherData } from "../../types/weather/weatherTypes";
 
 interface WeatherInfoProps {
     data: WeatherData;
@@ -9,7 +8,7 @@ interface WeatherInfoProps {
 
 interface GroupedData {
     dateString: string;
-    dateObj: Date,
+    dateObj: Date;
     time: string;
     weatherIcon: string;
     weatherDescription: string;
@@ -29,12 +28,12 @@ const windDirection = (deg: number) => {
 };
 
 // 風向きのアイコンcss
-const windDirectionIconStyle = (deg:number) => {
+const windDirectionIconStyle = (deg: number) => {
     return {
-        display: 'inline-block',
+        display: "inline-block",
         transform: `rotate(${Math.round((deg % 360) / 22.5) * 22.5}deg)`, // 16方向に変更
-    }
-}
+    };
+};
 
 // 日付の判定
 const getDayLabel = (date: Date): string => {
@@ -42,14 +41,14 @@ const getDayLabel = (date: Date): string => {
     const targetDate = new Date(date);
 
     if (targetDate.getDate() === currentDate.getDate()) {
-        return targetDate.getHours() < 24 ? '今日' : '明日';
+        return targetDate.getHours() < 24 ? "今日" : "明日";
     } else if (targetDate.getDate() === currentDate.getDate() + 1) {
-        return '明日';
+        return "明日";
     } else if (targetDate.getDate() === currentDate.getDate() + 2) {
-        return '明後日';
+        return "明後日";
     }
 
-    return '';
+    return "";
 };
 
 // 日時ごとにデータをグループ化するユーティリティ関数
@@ -59,7 +58,7 @@ const groupedWeatherData = (weatherByHours: HourlyData[]) => {
     weatherByHours.forEach((data) => {
         const date = new Date(data.dt * 1000);
 
-        const dateString = date.toLocaleDateString('ja-JP', { weekday: 'short', hour: 'numeric' });
+        const dateString = date.toLocaleDateString("ja-JP", { weekday: "short", hour: "numeric" });
         const time = `${date.getHours()}時`;
 
         // apiから必要なデータを新規作成
@@ -74,7 +73,7 @@ const groupedWeatherData = (weatherByHours: HourlyData[]) => {
             humidity: Math.round(data.humidity),
             windDirectionIconStyle: windDirectionIconStyle(data.wind_deg),
             windDirection: windDirection(data.wind_deg),
-            speed: Math.round(data.wind_speed)
+            speed: Math.round(data.wind_speed),
         });
     });
 
@@ -82,57 +81,22 @@ const groupedWeatherData = (weatherByHours: HourlyData[]) => {
 };
 
 const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
-    const [locationName, setLocationName] = useState<string | null>(null);
-
-    useEffect(() => {
-        // 緯度経度から地名に変換
-        const fetchLocation = async () => {
-            try {
-                const lat = data.lat;
-                const lon = data.lon;
-
-                const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
-                const { city } = response.data.address;
-
-
-                setLocationName(city);
-            } catch (error) {
-                console.error('Error fetching location name:', error);
-            }
-        };
-
-        if (data) {
-            fetchLocation();
-        }
-    }, [data]);
-
-    if (!data) {
-        return <div>Loading...</div>;
-    }
-
-    // locationName から特定のプロパティを取得して表示する
-    const cityName = typeof locationName === 'string' ? locationName : 'Loading...';
-
     const weatherByHours: HourlyData[] = data.hourly;
 
     const groupedData = groupedWeatherData(weatherByHours);
 
     return (
-        <div className={`${Styles.hourlyWeathercontainer}`}>
-            <h1>1時間ごとの {cityName} の天気</h1>
-
+        <div className={`${Styles.hourlyWeatherContainer}`}>
+            <h2>1時間ごとの天気</h2>
             <div className={`${Styles.hourlyWeatherTable}`}>
                 <table>
                     <tbody>
-                        <tr id='time'>
+                        <tr id="time">
                             <th rowSpan={2}>時刻</th>
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
                                     {index === 0 || (index > 0 && groupedData[index - 1].dateObj.getDate() !== hourlyWeatherData.dateObj.getDate()) ? (
-                                        <td
-                                            rowSpan={8}
-                                            className={`${Styles.dateObj}`}
-                                        >
+                                        <td rowSpan={8} className={`${Styles.dateObj}`}>
                                             {getDayLabel(hourlyWeatherData.dateObj)}
                                         </td>
                                     ) : null}
@@ -140,19 +104,16 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
                                 </React.Fragment>
                             ))}
                         </tr>
-                        <tr id='weatherIcon'>
+                        <tr id="weatherIcon">
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
                                     <td>
-                                        <img
-                                            src={`${hourlyWeatherData.weatherIcon}`}
-                                            alt={`${hourlyWeatherData.weatherDescription}`}
-                                        />
+                                        <img src={`${hourlyWeatherData.weatherIcon}`} alt={`${hourlyWeatherData.weatherDescription}`} />
                                     </td>
                                 </React.Fragment>
                             ))}
                         </tr>
-                        <tr id='temp'>
+                        <tr id="temp">
                             <th>気温</th>
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
@@ -160,7 +121,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
                                 </React.Fragment>
                             ))}
                         </tr>
-                        <tr id='pop'>
+                        <tr id="pop">
                             <th>降水</th>
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
@@ -168,7 +129,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
                                 </React.Fragment>
                             ))}
                         </tr>
-                        <tr id='humidity'>
+                        <tr id="humidity">
                             <th>湿度</th>
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
@@ -176,11 +137,13 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ data }) => {
                                 </React.Fragment>
                             ))}
                         </tr>
-                        <tr id='wind'>
+                        <tr id="wind">
                             <th rowSpan={3}>風</th>
                             {groupedData.map((hourlyWeatherData, index) => (
                                 <React.Fragment key={index}>
-                                    <td><span style={hourlyWeatherData.windDirectionIconStyle}>↓</span></td>
+                                    <td>
+                                        <span style={hourlyWeatherData.windDirectionIconStyle}>↓</span>
+                                    </td>
                                 </React.Fragment>
                             ))}
                         </tr>
