@@ -1,6 +1,7 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
+import { loadTodos } from "../redux/todosReducer";
 // Component Section
 import AddTodoForm from "../components/AddTodoForm";
 import ClearAllButton from "../components/ClearAllButton";
@@ -11,6 +12,12 @@ import TodoSummary from "../components/TodoSummary";
 
 export default function Home() {
     const allTodoData = useSelector((store: RootState) => store.todos.allTodoData);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loadTodos());
+    }, [dispatch]);
 
     return (
         <Layout>
