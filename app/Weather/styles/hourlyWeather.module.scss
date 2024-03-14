@@ -1,0 +1,45 @@
+.hourlyWeatherContainer {
+    width: 100%;
+
+    .hourlyWeatherTable {
+        position: relative;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-spacing: 0;
+        border-collapse: separate;
+    }
+
+    th,
+    td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        vertical-align: middle;
+        padding: 8px;
+    }
+
+    th {
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        z-index: 9;
+        border: 1px solid #dddddd;
+        width: 50px;
+    }
+
+    td {
+        width: 70px;
+    }
+
+    td.dateObj {
+        position: sticky;
+        top: 0;
+        left: 50px;
+        background-color: #f2f2f2;
+        z-index: 9;
+    }
+}
