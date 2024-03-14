@@ -22,7 +22,7 @@ const BottomNavBar: React.FC = () => {
                     <FontAwesomeIcon className={Styles.customIcon} icon={faCloudSun} />
                     <span>Weather</span>
                 </Link>
-                <Link href="/" passHref>
+                <Link href="/todolist" passHref>
                     <FontAwesomeIcon className={Styles.customIcon} icon={faTableList} />
                     <span>TodoList</span>
                 </Link>
