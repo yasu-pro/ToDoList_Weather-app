@@ -4,7 +4,7 @@ TypeScript と React , Redux の学習のために作成したアプリ。
 
 ## URL
 
-[TodoList アプリ](https://to-do-list-steel-two.vercel.app/)
+[TodoList アプリ](https://to-do-list-steel-two.vercel.app/todolist)
 [お天気 アプリ](https://to-do-list-steel-two.vercel.app/weather)(v1.0.0)
 
 ## DEMO
