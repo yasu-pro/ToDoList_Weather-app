@@ -61,7 +61,7 @@ const BurgerMenu = () => {
         }
     }, []);
 
-    const handleStateChange = (state) => {
+    const handleStateChange = (state: { isOpen: boolean }) => {
         setMenuOpen(state.isOpen);
     };
 
