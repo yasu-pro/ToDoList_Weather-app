@@ -1,0 +1,50 @@
+
+.customPriorityLabel {
+    display: flex;
+    align-items: center;
+}
+
+.customPriorityRadioButton:checked + .customRadioButtonIcon::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.customPriorityRadioButton {
+    display: none;
+}
+
+.customRadioButtonIcon {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid #000;
+    margin-right: 8px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.customPriorityRadioButton:checked + .customRadioButtonIcon {
+    border-color: rgb(0, 0, 0);
+    background-color: transparent;
+    background-image: url('/circle.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.lowIcon::before {
+    background-color: rgb(0, 128, 0);
+}
+
+.mediumIcon::before {
+    background-color: rgb(255, 215, 0);
+}
+
+.hightIcon::before {
+    background-color: rgb(255, 0, 0);
+}
