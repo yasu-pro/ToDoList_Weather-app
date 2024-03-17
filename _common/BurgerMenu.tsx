@@ -71,15 +71,23 @@ const BurgerMenu = () => {
 
     return isPcScreen ? (
         <Menu isOpen={menuOpen} onStateChange={handleStateChange} width={250} customBurgerIcon={<FontAwesomeIcon icon={faBars} />} customCrossIcon={<FontAwesomeIcon icon={faTimes} />} styles={styles}>
-            <Link href="/todolist" onClick={closeMenu}>
-                ToDoList
-            </Link>
-            <Link href="/weather" onClick={closeMenu}>
-                Weather
-            </Link>
-            <Link href="/settings" onClick={closeMenu}>
-                Settings
-            </Link>
+            <ul>
+                <li>
+                    <Link href="/todolist" onClick={closeMenu}>
+                        ToDoList
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/weather" onClick={closeMenu}>
+                        Weather
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/settings" onClick={closeMenu}>
+                        Settings
+                    </Link>
+                </li>
+            </ul>
         </Menu>
     ) : null;
 };
